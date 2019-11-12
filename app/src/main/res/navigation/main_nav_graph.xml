@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authorisation_nav_graph"
+    app:startDestination="@id/authorisationEmailFragment">
+
+    <fragment android:id="@+id/placeholder"
+        tools:layout="@layout/activity_start">
+        <action
+            android:id="@+id/action_placeholder_to_authorisationEmailFragment"
+            app:destination="@id/authorisationEmailFragment" />
+        <action
+            android:id="@+id/action_placeholder_to_authorisationEnterPassCodeFragment"
+            app:destination="@id/authorisationEnterPassCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorisationCodeFragment"
+        android:name="com.epam.epmrduacmvan.views.AuthorisationCodeFragment"
+        android:label="AuthorisationCodeFragment"
+        tools:layout="@layout/fragment_authorisation_code">
+        <action
+            android:id="@+id/action_authorisationCodeFragment_to_authorisationEnterNewPassCodeFragment"
+            app:destination="@id/authorisationEnterNewPassCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorisationEmailFragment"
+        android:name="com.epam.epmrduacmvan.views.AuthorisationEmailFragment"
+        android:label="AuthorisationEmailFragment"
+        tools:layout="@layout/fragment_authorisation_email">
+        <action
+            android:id="@+id/action_authorisationEmailFragment_to_authorisationCodeFragment"
+            app:destination="@id/authorisationCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorisationEnterNewPassCodeFragment"
+        android:name="com.epam.epmrduacmvan.views.AuthorisationEnterNewPassCodeFragment"
+        android:label="AuthorisationEnterNewPassCodeFragment"
+        tools:layout="@layout/fragment_authorisation_enter_new_pass_code">
+        <action
+            android:id="@+id/action_authorisationEnterNewPassCodeFragment_to_authorisationReEnterPassCodeFragment"
+            app:destination="@id/authorisationReEnterPassCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorisationReEnterPassCodeFragment"
+        android:name="com.epam.epmrduacmvan.views.AuthorisationReEnterPassCodeFragment"
+        android:label="AuthorisationReEnterPassCodeFragment"
+        tools:layout="@layout/fragment_authorisation_re_enter_pass_code"/>
+
+    <fragment
+        android:id="@+id/authorisationEnterPassCodeFragment"
+        android:name="com.epam.epmrduacmvan.views.AuthorisationEnterPassCodeFragment"
+        android:label="AuthorisationEnterPassCodeFragment"
+        tools:layout="@layout/fragment_authorisation_enter_pass_code">
+        <action
+            android:id="@+id/action_authorisationEnterPassCodeFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_authorisationEnterPassCodeFragment_to_authorisationEmailFragment"
+            app:destination="@id/authorisationEmailFragment" />
+    </fragment>
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.epam.epmrduacmvan.views.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+</navigation>

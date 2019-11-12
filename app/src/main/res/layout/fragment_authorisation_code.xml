@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="authorisationCodeFragment"
+            type="com.epam.epmrduacmvan.views.AuthorisationCodeFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/enter_code_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/text_enter_code"
+            style="@style/TextStyle"
+            android:layout_marginTop="16dp"
+            android:text="@string/enter_code"
+            android:textColor="@color/colorWaikawaGray"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_please_provide"
+            style="@style/TextStyle"
+            android:layout_marginTop="3dp"
+            android:text="@string/please_provide_code_from_your_email"
+            android:textColor="#8A5A718B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_enter_code" />
+
+        <EditText
+            android:id="@+id/edit_code"
+            android:layout_width="168dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginEnd="96dp"
+            android:backgroundTint="@android:color/transparent"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/hint_edit_code"
+            android:autofillHints=""
+            tools:targetApi="O"
+            android:inputType="textVisiblePassword|numberPassword"
+            android:letterSpacing="0.2"
+            android:maxLength="4"
+            android:textAlignment="center"
+            android:textColor="@color/colorBittersweet"
+            android:textColorHint="@color/colorBittersweet"
+            android:textSize="48sp"
+            android:typeface="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_please_provide" />
+
+        <TextView
+            android:id="@+id/text_send_again"
+            style="@style/TextStyle"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="107dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/send_again"
+            android:textColor="@color/colorScooter"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_no_code" />
+
+        <TextView
+            android:id="@+id/text_no_code"
+            style="@style/TextStyle"
+            android:layout_marginStart="107dp"
+            android:layout_marginEnd="3dp"
+            android:text="@string/no_code"
+            android:textColor="@color/colorSilver"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_send_again"
+            app:layout_constraintEnd_toStartOf="@+id/text_send_again"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

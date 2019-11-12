@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/to_authorisation_activity"
+        android:icon="@drawable/account"
+        android:title="@string/authorisation_lower_case" />
+</menu>
