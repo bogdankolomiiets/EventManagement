@@ -1,1 +1,1 @@
-Conferemce management: Android client
+Conference management: Android client

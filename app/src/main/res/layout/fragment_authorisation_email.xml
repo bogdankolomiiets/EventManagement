@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/enter_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_16_dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="@string/enter_email"
+        android:textColor="@color/colorWaikawaGray"
+        android:textSize="@dimen/textSize20sp" />
+
+    <TextView
+        android:id="@+id/pls_provide_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_email"
+        android:layout_marginTop="@dimen/margin_4_dp"
+        android:alpha=".54"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="@string/please_provide_your_email"
+        android:textColor="@color/colorWaikawaGray"
+        android:textSize="@dimen/textSize14sp" />
+
+    <EditText
+        android:id="@+id/email_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pls_provide_email"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/value_16_dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="@dimen/value_16_dp"
+        android:autofillHints=""
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/example_domain_com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorGravel"
+        android:textColorHint="@color/colorSilver"
+        android:textSize="@dimen/textSize16sp"
+        tools:targetApi="O" />
+
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_default_btn"
+        android:enabled="false"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="@dimen/padding24dp"
+        android:text="@string/next"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize14sp" />
+</RelativeLayout>

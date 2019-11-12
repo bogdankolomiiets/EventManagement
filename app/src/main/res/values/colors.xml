@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorHibiscus</color>
+    <color name="colorPrimaryDark">@color/colorEminence</color>
+    <color name="colorAccent">@color/colorBittersweet</color>
+
+    <color name="colorScooter">#39C2D7</color>
+    <color name="colorBittersweet">#FD7762</color>
+    <color name="colorWaikawaGray">#5A718B</color>
+    <color name="colorGravel">#464547</color>
+    <color name="colorSilver">#CCCCCC</color>
+    <color name="colorEminence">#622774</color>
+    <color name="colorHibiscus">#C53364</color>
+    <color name="colorWhite">#FFFFFF</color>
+</resources>
