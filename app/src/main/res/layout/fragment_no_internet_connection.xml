@@ -18,5 +18,5 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_refresh"
         android:contentDescription="@string/refresh_image"
-        android:padding="@dimen/padding24dp"/>
+        android:padding="@dimen/value_24_dp"/>
 </LinearLayout>

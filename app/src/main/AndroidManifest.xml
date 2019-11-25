@@ -13,7 +13,8 @@
 
         <activity
             android:name="com.epam.epmrduacmvan.views.StartActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
             android:configChanges="orientation"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
@@ -24,8 +25,13 @@
 
         <activity
             android:name="com.epam.epmrduacmvan.views.MainActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation"
             android:theme="@style/AppTheme"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 </manifest>

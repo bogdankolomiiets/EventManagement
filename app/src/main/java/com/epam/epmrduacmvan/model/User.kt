@@ -5,5 +5,4 @@ data class User (
     var firstName: String = "",
     var lastName: String? = "",
     var password: String = "",
-    var email: String = ""){
-}
+    var email: String = "")

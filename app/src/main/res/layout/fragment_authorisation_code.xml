@@ -1,94 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_constraintHorizontal_chainStyle="spread_inside">
 
-    <data>
-        <variable
-            name="authorisationCodeFragment"
-            type="com.epam.epmrduacmvan.views.AuthorisationCodeFragment" />
-    </data>
+    <TextView
+        android:id="@+id/text_enter_code"
+        style="@style/TextStyleRobotoRegular"
+        android:layout_marginTop="@dimen/value_16_dp"
+        android:text="@string/enter_code"
+        android:textColor="@color/colorWaikawaGray"
+        android:textSize="@dimen/textSize20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/enter_code_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/text_please_provide"
+        style="@style/TextStyleRobotoRegular"
+        android:layout_marginTop="3dp"
+        android:text="@string/please_provide_code_from_your_email"
+        android:textColor="@color/colorWaikawaGrayOpacity50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_enter_code" />
 
-
-        <TextView
-            android:id="@+id/text_enter_code"
-            style="@style/TextStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/enter_code"
-            android:textColor="@color/colorWaikawaGray"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_please_provide"
-            style="@style/TextStyle"
-            android:layout_marginTop="3dp"
-            android:text="@string/please_provide_code_from_your_email"
-            android:textColor="#8A5A718B"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_enter_code" />
+    <LinearLayout
+        android:id="@+id/code_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="73dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_please_provide">
 
         <EditText
-            android:id="@+id/edit_code"
-            android:layout_width="168dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="73dp"
-            android:layout_marginEnd="96dp"
+            android:id="@+id/edit_num_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:cursorVisible="false"
-            android:ems="10"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/roboto"
             android:hint="@string/hint_edit_code"
-            android:autofillHints=""
-            tools:targetApi="O"
-            android:inputType="textVisiblePassword|numberPassword"
-            android:letterSpacing="0.2"
-            android:maxLength="4"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
             android:textAlignment="center"
             android:textColor="@color/colorBittersweet"
-            android:textColorHint="@color/colorBittersweet"
-            android:textSize="48sp"
-            android:typeface="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_please_provide" />
+            android:textColorHint="@color/colorBittersweetOpacity20"
+            android:textSize="48sp" />
 
-        <TextView
-            android:id="@+id/text_send_again"
-            style="@style/TextStyle"
+        <EditText
+            android:id="@+id/edit_num_two"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="107dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/send_again"
-            android:textColor="@color/colorScooter"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/text_no_code" />
+            android:backgroundTint="@android:color/transparent"
+            android:cursorVisible="false"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/hint_edit_code"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorBittersweet"
+            android:textColorHint="@color/colorBittersweetOpacity20"
+            android:textSize="48sp" />
 
-        <TextView
-            android:id="@+id/text_no_code"
-            style="@style/TextStyle"
-            android:layout_marginStart="107dp"
-            android:layout_marginEnd="3dp"
-            android:text="@string/no_code"
-            android:textColor="@color/colorSilver"
-            android:textSize="12sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/text_send_again"
-            app:layout_constraintEnd_toStartOf="@+id/text_send_again"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+        <EditText
+            android:id="@+id/edit_num_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:cursorVisible="false"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/hint_edit_code"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorBittersweet"
+            android:textColorHint="@color/colorBittersweetOpacity20"
+            android:textSize="48sp" />
+
+        <EditText
+            android:id="@+id/edit_num_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:cursorVisible="false"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/hint_edit_code"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorBittersweet"
+            android:textColorHint="@color/colorBittersweetOpacity20"
+            android:textSize="48sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_no_code"
+        style="@style/TextStyleRobotoMedium"
+        android:layout_marginEnd="3dp"
+        android:letterSpacing="0.1"
+        android:text="@string/no_code"
+        android:textColor="@color/colorSilver"
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_send_again"
+        app:layout_constraintEnd_toStartOf="@+id/text_send_again"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_send_again"
+        style="@style/TextStyleRobotoMedium"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="@dimen/value_16_dp"
+        android:letterSpacing="0.1"
+        android:text="@string/send_again"
+        android:textColor="@color/colorScooter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/text_no_code" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,32 +14,63 @@
         <item name="colorPrimaryDark">@android:color/white</item>
     </style>
 
-    <style name="tool_bar_title_style">
+    <style name="ToolBarTitleStyle">
         <item name="android:gravity">center</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/colorScooter</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:paddingEnd">@dimen/value_16_dp</item>
     </style>
 
     <style name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
-    <style name="TextStyle">
+    <style name="TextStyleRobotoRegular">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="TextStyleRobotoMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/textSize12sp</item>
     </style>
 
-    <style name="ButtonPasscodeStyle">
+    <style name="ButtonPassCodeStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">90dp</item>
         <item name="android:layout_height">90dp</item>
-        <item name="android:background">@drawable/circle_button</item>
-        <item name="android:backgroundTint">@color/colorWhite</item>
+        <item name="android:layout_margin">@dimen/value_16_dp</item>
+        <item name="android:background">@drawable/pass_code_buttons_background</item>
+        <item name="android:textColor">@drawable/change_color_button</item>
+        <item name="android:fontFamily">@font/sfns_display</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/colorWaikawaGray</item>
+        <item name="android:elevation">1dp</item>
     </style>
 
+    <style name="ButtonPassCodeStyle.Borderless" parent="ButtonPassCodeStyle">
+        <item name="android:elevation">@dimen/value_0_dp</item>
+    </style>
+
+    <style name="ButtonDelPassCodeStyle" parent="ButtonPassCodeStyle.Borderless">
+        <item name="android:src">@drawable/change_image_button</item>
+    </style>
+
+    <style name="InputIndicatorStyle">
+        <item name="android:layout_width">@dimen/value_8_dp</item>
+        <item name="android:layout_height">@dimen/value_8_dp</item>
+        <item name="android:layout_margin">@dimen/value_16_dp</item>
+        <item name="android:background">@drawable/indicator_animation</item>
+    </style>
+
+    <style name="CustomToastTextStyle">
+        <item name="android:background">@color/colorBittersweet</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/textSize14sp</item>
+        <item name="android:padding">@dimen/value_4_dp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

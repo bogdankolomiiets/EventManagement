@@ -5,15 +5,15 @@
     <string name="please_provide_your_email">Please provide your email</string>
     <string name="next">NEXT</string>
     <string name="example_domain_com">example@domain.com</string>
-    <string name="conference_management">CONFERENCE MANAGEMENT</string>
+    <string name="event_management">EVENT MANAGEMENT</string>
     <string name="authorisation_lower_case">Authorisation</string>
     <string name="epam_logo">EPAM logo</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
-    <string name="code_has_been_sent">Code has been re-sent on your email</string>
+    <string name="code_has_been_resent">Code has been re-sent on your email</string>
     <string name="enter_code">ENTER CODE</string>
     <string name="please_provide_code_from_your_email">Please provide code from your email</string>
-    <string name="hint_edit_code">- - - -</string>
+    <string name="hint_edit_code">—</string>
     <string name="send_again">Send again.</string>
     <string name="no_code">No code?</string>
     <string name="enter_new_passcode">ENTER NEW PASSCODE</string>
@@ -33,8 +33,16 @@
     <string name="button_forgot">Forgot?</string>
     <string name="button_skip">Skip?</string>
     <string name="re_enter_passcode">RE-ENTER PASSCODE</string>
+    <string name="passcode">PASSCODE</string>
+    <string name="set_passcode">SET PASSCODE</string>
     <string name="please_remember_your_passcode">Please remember your passcode</string>
-    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_internet_connection">No Internet connection.</string>
     <string name="refresh_image">refresh image</string>
     <string name="delete_button_content_desc">delete button</string>
+    <string name="sign_out">Sign out</string>
+    <string name="you_entered_the_wrong_code">You entered the wrong code</string>
+    <string name="those_passwords_didnt_match_try_again">Those passwords didn\'t match. Try again.</string>
+    <string name="arrow_back">arrow back</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
 </resources>
