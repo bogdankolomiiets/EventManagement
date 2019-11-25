@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/value_16_dp"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
         android:text="@string/enter_email"
         android:textColor="@color/colorWaikawaGray"
@@ -23,12 +23,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/enter_email"
-        android:layout_marginTop="@dimen/margin_4_dp"
-        android:alpha=".54"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="@dimen/value_4_dp"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
         android:text="@string/please_provide_your_email"
-        android:textColor="@color/colorWaikawaGray"
+        android:textColor="@color/colorWaikawaGrayOpacity50"
         android:textSize="@dimen/textSize14sp" />
 
     <EditText
@@ -42,11 +41,13 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="@dimen/value_16_dp"
         android:autofillHints=""
-        android:fontFamily="@font/roboto_medium"
+        android:background="@drawable/edit_text_background_selector"
+        android:fontFamily="@font/roboto"
         android:hint="@string/example_domain_com"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorGravel"
         android:textColorHint="@color/colorSilver"
+        android:textCursorDrawable="@color/colorScooter"
         android:textSize="@dimen/textSize16sp"
         tools:targetApi="O" />
 
@@ -57,10 +58,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/background_default_btn"
+        android:background="@drawable/next_btn_background"
         android:enabled="false"
         android:fontFamily="@font/roboto_medium"
-        android:padding="@dimen/padding24dp"
+        android:padding="@dimen/value_24_dp"
         android:text="@string/next"
         android:textColor="@android:color/white"
         android:textSize="@dimen/textSize14sp" />

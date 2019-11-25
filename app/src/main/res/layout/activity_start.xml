@@ -8,19 +8,9 @@
     android:orientation="vertical"
     tools:context=".views.StartActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/authorisation_tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?actionBarSize">
-
-        <TextView
-            style="@style/tool_bar_title_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/authorisation" />
-    </androidx.appcompat.widget.Toolbar>
+    <include
+        android:id="@+id/custom_authorisation_tool_bar"
+        layout="@layout/custom_tool_bar"/>
 
     <fragment
         android:id="@+id/nav_host_fragment"

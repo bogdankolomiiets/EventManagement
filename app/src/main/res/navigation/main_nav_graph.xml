@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_placeholder_to_authorisationEnterPassCodeFragment"
             app:destination="@id/authorisationEnterPassCodeFragment" />
+        <action
+            android:id="@+id/action_placeholder_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
 
     <fragment
@@ -39,23 +42,33 @@
         android:id="@+id/authorisationEnterNewPassCodeFragment"
         android:name="com.epam.epmrduacmvan.views.AuthorisationEnterNewPassCodeFragment"
         android:label="AuthorisationEnterNewPassCodeFragment"
-        tools:layout="@layout/fragment_authorisation_enter_new_pass_code">
+        tools:layout="@layout/fragment_authorisation_pass_code">
         <action
             android:id="@+id/action_authorisationEnterNewPassCodeFragment_to_authorisationReEnterPassCodeFragment"
             app:destination="@id/authorisationReEnterPassCodeFragment" />
+        <argument
+            android:name="firstPassCode"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_authorisationEnterNewPassCodeFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
 
     <fragment
         android:id="@+id/authorisationReEnterPassCodeFragment"
         android:name="com.epam.epmrduacmvan.views.AuthorisationReEnterPassCodeFragment"
         android:label="AuthorisationReEnterPassCodeFragment"
-        tools:layout="@layout/fragment_authorisation_re_enter_pass_code"/>
+        tools:layout="@layout/fragment_authorisation_pass_code">
+        <action
+            android:id="@+id/action_authorisationReEnterPassCodeFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/authorisationEnterPassCodeFragment"
         android:name="com.epam.epmrduacmvan.views.AuthorisationEnterPassCodeFragment"
         android:label="AuthorisationEnterPassCodeFragment"
-        tools:layout="@layout/fragment_authorisation_enter_pass_code">
+        tools:layout="@layout/fragment_authorisation_pass_code">
         <action
             android:id="@+id/action_authorisationEnterPassCodeFragment_to_mainActivity"
             app:destination="@id/mainActivity" />

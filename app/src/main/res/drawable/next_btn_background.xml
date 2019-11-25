@@ -4,12 +4,12 @@
         <color android:color="@color/colorSilver" />
     </item>
 
-    <item android:state_enabled="true">
+    <item android:state_enabled="true" android:state_pressed="false">
         <color android:color="@color/colorScooter" />
     </item>
 
-    <item android:state_pressed="true">
-        <color android:color="@color/colorScooter"/>
+    <item android:state_enabled="true" android:state_pressed="true">
+        <color android:color="@color/colorJellyBean"/>
     </item>
 
 </selector>

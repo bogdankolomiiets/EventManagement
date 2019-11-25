@@ -7,10 +7,8 @@ object BackendUserAuthorisationServiceImpl : UserAuthorisationService {
     }
 
     override fun confirmEmail(userEmail: String, codeFromEmail: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setPassCode(passCode: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
