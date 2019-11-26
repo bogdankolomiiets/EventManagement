@@ -11,6 +11,7 @@
     <string name="close">Close</string>
     <string name="open">Open</string>
     <string name="code_has_been_resent">Code has been re-sent on your email</string>
+    <string name="code_has_sent">Code has sent on your email</string>
     <string name="enter_code">ENTER CODE</string>
     <string name="please_provide_code_from_your_email">Please provide code from your email</string>
     <string name="hint_edit_code">—</string>
@@ -45,4 +46,17 @@
     <string name="arrow_back">arrow back</string>
     <string name="search">Search</string>
     <string name="filter">Filter</string>
+    <string name="confirmation_error">Confirmation error</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="bad_response">Bad response</string>
+    <string name="bad_request">Bad request</string>
+    <string name="registration">Registration</string>
+    <string name="on_line">On-line</string>
+    <string name="location">Location</string>
+    <string name="language">Language</string>
+    <string name="event_title">Event title</string>
+    <string name="triangle_image">triangle image</string>
+    <string name="passcode_removed">Passcode has removed</string>
+    <string name="passcode_saved">Passcode has saved</string>
+    <string name="not_found">Not found</string>
 </resources>

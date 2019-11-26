@@ -41,13 +41,13 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="@dimen/value_16_dp"
         android:autofillHints=""
-        android:background="@drawable/edit_text_background_selector"
         android:fontFamily="@font/roboto"
         android:hint="@string/example_domain_com"
+        android:backgroundTint="@color/colorScooter"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorGravel"
         android:textColorHint="@color/colorSilver"
-        android:textCursorDrawable="@color/colorScooter"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="@dimen/textSize16sp"
         tools:targetApi="O" />
 

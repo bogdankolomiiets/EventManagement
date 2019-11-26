@@ -1,9 +1,9 @@
 package com.epam.epmrduacmvan.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.SystemClock
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -19,7 +19,7 @@ fun showCustomSnack(view: View, intValue: Int) {
     snack.show()
 }
 
-fun Snackbar.config(){
+fun Snackbar.config() {
     val params = view.layoutParams as ViewGroup.MarginLayoutParams
     params.setMargins(16, 0, 16, 16)
     view.layoutParams = params
@@ -27,10 +27,10 @@ fun Snackbar.config(){
     ViewCompat.setElevation(view, 6F)
 }
 
-fun showCustomToastNoInternet(view: View){
-    val customToast = Toast.makeText(view.context, R.string.no_internet_connection, Toast.LENGTH_LONG)
+fun showCustomToastNoInternet(context: Context) {
+    val customToast = Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_LONG)
     customToast.setGravity(Gravity.FILL_HORIZONTAL + Gravity.TOP, 0, 0)
-    customToast.view = LayoutInflater.from(view.context).inflate(R.layout.custom_toast, view.findViewById(R.id.custom_toast_container))
+    customToast.view = View.inflate(context, R.layout.custom_toast, null)
     customToast.show()
 }
 
@@ -49,4 +49,15 @@ fun hideKeyboard(view: View) {
 fun showKeyboard(view: View) {
     val inputManager = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     inputManager.showSoftInput(view, 0)
+}
+
+fun isOnline(context: Context): Boolean {
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val networkInfo = connectivityManager.activeNetworkInfo
+    return if (networkInfo != null && networkInfo.isConnected) {
+        true
+    } else {
+        showCustomToastNoInternet(context)
+        false
+    }
 }
