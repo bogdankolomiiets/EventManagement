@@ -11,9 +11,8 @@
                 android:startColor="@color/colorEminence" />
         </shape>
     </item>
-    <item android:top="200dp">
-        <bitmap android:gravity="top"
-            android:src="@drawable/splash_screen_title"
-            />
+    <item android:bottom="100dp">
+        <bitmap android:gravity="center"
+            android:src="@drawable/logo" />
     </item>
 </layer-list>

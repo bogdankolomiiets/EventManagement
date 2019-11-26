@@ -28,9 +28,9 @@ class DotIndicatorAnimator(val viewGroup: ViewGroup) {
         }
     }
 
-    fun setupIndicators() {
+    private fun setupIndicators() {
         indicatorsArray = arrayOf()
-        for (i in 0 until viewsArray.size) {
+        for (i in viewsArray.indices) {
             indicatorsArray += viewsArray[i].background as AnimationDrawable
             indicatorsArray[i].isOneShot = true
         }

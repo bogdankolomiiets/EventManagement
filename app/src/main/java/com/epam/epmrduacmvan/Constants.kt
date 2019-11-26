@@ -10,9 +10,10 @@ class Constants {
         const val EMAIL: String = "EMAIL"
         const val CODE_LENGTH: Int = 4
         const val PASS_CODE: String = "PASS_CODE"
-        const val PASS_CODE_LENGTH: Int = 4
-        const val NUMBER_OF_ATTEMPTS: Int = 3
-        const val VERIFICATION_CODE: String = "VERIFICATION_CODE"
+        const val EMPTY_PASSCODE: String = "0000"
+        const val USER_TOKEN: String = "USER_TOKEN"
+        const val TOKEN_SIGN: String = "Bearer_"
+        const val TOKEN_HEADER_NAME: String = "Authorization"
         const val SHARED_PREF: String = "SHARED_PREF"
         const val USER_NEW_PASSCODE: String = "USER_NEW_PASSCODE"
         const val WITHOUT_PASSCODE: Int = -1

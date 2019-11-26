@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="event"
+            type="com.epam.epmrduacmvan.model.Event" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/single_event_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAlabaster"
+        android:paddingTop="@dimen/value_8_dp">
+
+        <LinearLayout
+            android:id="@+id/info_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/event_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAmber"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="@dimen/value_8_dp"
+                android:paddingTop="@dimen/value_4_dp"
+                android:paddingEnd="@dimen/value_8_dp"
+                android:paddingBottom="@dimen/value_4_dp"
+                android:text="@{event.status}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/registration"/>
+
+            <TextView
+                android:id="@+id/event_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cast"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_16_dp"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:text="@{event.type}"
+                android:textColor="@color/colorWaikawaGrayOpacity50"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/on_line"/>
+
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="@dimen/value_4_dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_4_dp"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:text="@{event.city.name}"
+                android:textColor="@color/colorWaikawaGrayOpacity50"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/location"/>
+
+            <TextView
+                android:id="@+id/event_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_language"
+                android:drawablePadding="@dimen/value_4_dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_4_dp"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:text="@{event.language.name}"
+                android:textColor="@color/colorWaikawaGrayOpacity50"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/language"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/single_event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/info_container"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/value_8_dp"
+            android:layout_marginEnd="@dimen/value_16_dp"
+            android:layout_toStartOf="@+id/overflow_menu"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:paddingTop="@dimen/value_4_dp"
+            android:paddingBottom="@dimen/value_4_dp"
+            android:text="@{event.title}"
+            android:textColor="@color/colorScooter"
+            android:textSize="@dimen/textSize16sp"
+            tools:text="@string/event_title" />
+
+        <TextView
+            android:id="@+id/overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/value_8_dp"
+            android:background="@drawable/ic_more_vertical"
+            android:textColor="@color/colorWaikawaGrayOpacity50" />
+
+        <LinearLayout
+            android:id="@+id/speakers_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/single_event_title"
+            android:layout_alignStart="@+id/single_event_title"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_language" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/triangle_background"
+            android:contentDescription="@string/triangle_image"
+            android:paddingStart="@dimen/value_16_dp"
+            android:paddingTop="@dimen/value_16_dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_mic" />
+    </RelativeLayout>
+</layout>

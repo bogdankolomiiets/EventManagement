@@ -25,7 +25,8 @@
         tools:layout="@layout/fragment_authorisation_code">
         <action
             android:id="@+id/action_authorisationCodeFragment_to_authorisationEnterNewPassCodeFragment"
-            app:destination="@id/authorisationEnterNewPassCodeFragment" />
+            app:destination="@id/authorisationEnterNewPassCodeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment

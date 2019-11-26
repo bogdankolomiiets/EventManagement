@@ -19,4 +19,6 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorCustomToastBackground">#323232</color>
     <color name="colorJellyBean">#258291</color>
+    <color name="colorAmber">#FFC000</color>
+    <color name="colorAlabaster">#F7F7F7</color>
 </resources>
