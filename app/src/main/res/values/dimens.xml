@@ -13,4 +13,7 @@
     <dimen name="textSize16sp">16sp</dimen>
     <dimen name="textSize20sp">20sp</dimen>
     <dimen name="textSize48sp">48sp</dimen>
+    <dimen name="value_15_dp">15dp</dimen>
+    <dimen name="value_20_dp">20dp</dimen>
+    <dimen name="value_19_dp">19dp</dimen>
 </resources>

@@ -5,7 +5,8 @@ class RequestResponseCodes {
         const val CODE_SENT_OK = 2000
         const val RESPONSE_BODY_TO_JSON_FAIL = 2001
         const val PASSCODE_REMOVED = 2002
-        const val PASSCODE_SET = 2003
+        const val PASSCODE_SET_NOT_EMPTY = 2003
+        const val PASSCODE_SET_EMPTY = 2004
         const val EMAIL_VERIFIED = 2004
         const val OK_200 = 200
         const val BAD_REQUEST_400 = 400

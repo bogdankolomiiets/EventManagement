@@ -13,9 +13,9 @@ import com.epam.epmrduacmvan.Constants.Companion.EMPTY_PASSCODE
 import com.epam.epmrduacmvan.Constants.Companion.PASS_CODE
 import com.epam.epmrduacmvan.AppApplication
 import com.epam.epmrduacmvan.R
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET_EMPTY
 import com.epam.epmrduacmvan.utils.hideKeyboard
 import kotlinx.android.synthetic.main.fragment_authorisation_pass_code.view.*
-import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET
 
 class AuthorisationEnterNewPassCodeFragment : AuthorisationPasscodeBaseFragment(), View.OnClickListener {
     private var userNewPassCode = ""
@@ -68,6 +68,7 @@ class AuthorisationEnterNewPassCodeFragment : AuthorisationPasscodeBaseFragment(
             .putString(PASS_CODE, EMPTY_PASSCODE)
             .apply()
 
-        StartActivity.obtainViewModel(this).passCodeRequestStatus.postValue(PASSCODE_SET)
+        StartActivity.obtainViewModel(this).passCodeRequestStatus.postValue(PASSCODE_SET_EMPTY)
+
     }
 }
