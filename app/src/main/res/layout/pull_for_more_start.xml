@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/event_info_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pull_for_more_background"
+    app:layoutDescription="@xml/pull_motion_scene">
+
+    <TextView
+        android:id="@+id/event_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/value_20_dp"
+        android:background="@color/colorAmber"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingTop="@dimen/value_4_dp"
+        android:paddingBottom="@dimen/value_4_dp"
+        android:paddingStart="@dimen/value_8_dp"
+        android:paddingEnd="@dimen/value_8_dp"
+        android:text="@string/registration"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/event_description_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/value_16_dp"
+        android:layout_marginTop="@dimen/value_19_dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/event_status"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/description_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingTop="@dimen/value_4_dp"
+            android:paddingBottom="@dimen/value_4_dp"
+            android:text="@string/description"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize12sp" />
+
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:paddingEnd="@dimen/value_8_dp"
+            android:text="To create an exciting and motivating educational
+process, the IT Ukraine Association and EPAM Ukraine
+attracts the best lecturers and the most proactive
+teachers, who support the idea of the free knowledge
+distribution among the people. We are assisted by the
+Ministry of Education and Science, state educational institutions"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pull_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/isometric_image"
+        android:gravity="center"
+        android:elevation="@dimen/value_4_dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/pull_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_expand_more"
+            android:gravity="center"
+            android:text="@string/pull_for_more"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize12sp"
+            android:fontFamily="@font/roboto_regular"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

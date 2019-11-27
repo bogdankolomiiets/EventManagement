@@ -32,6 +32,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_alignParentTop="true"
+                        android:contentDescription="TODO"
+                        android:background="@drawable/bridge_from_internet" />
+
+                    <include
+                        android:id="@+id/sliding_container"
+                        layout="@layout/pull_for_more_start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/image"
+                        android:layout_marginTop="-16dp" />
+                </RelativeLayout>
+
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/new_event_fab"
@@ -40,11 +62,12 @@
                     android:layout_marginEnd="@dimen/value_16_dp"
                     android:layout_marginBottom="@dimen/value_16_dp"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="addNewEvent"
                     app:backgroundTint="@color/colorScooter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@drawable/ic_add"
-                    android:focusable="true" />
+                    app:srcCompat="@drawable/ic_add" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.navigation.NavigationView

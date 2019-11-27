@@ -13,13 +13,16 @@ import com.epam.epmrduacmvan.Constants.Companion.PASS_CODE
 import com.epam.epmrduacmvan.Constants.Companion.WITHOUT_PASSCODE
 import com.epam.epmrduacmvan.Constants.Companion.WITH_PASSCODE
 import com.epam.epmrduacmvan.AppApplication
+import com.epam.epmrduacmvan.Constants
 import com.epam.epmrduacmvan.Constants.Companion.EMPTY_PASSCODE
 import com.epam.epmrduacmvan.R
+import com.epam.epmrduacmvan.RequestResponseCodes
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.BAD_REQUEST_400
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.INTERNAL_SERVER_ERROR_500
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.NOT_FOUND_404
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_REMOVED
-import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET_EMPTY
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET_NOT_EMPTY
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.RESPONSE_BODY_TO_JSON_FAIL
 import com.epam.epmrduacmvan.utils.showCustomSnack
 import com.epam.epmrduacmvan.utils.showSplashScreen
@@ -55,7 +58,7 @@ class StartActivity : AppCompatActivity() {
 
         obtainViewModel(supportFragmentManager.fragments.first()).passCodeRequestStatus.observe(this, Observer {
             when (it){
-                PASSCODE_SET -> {
+                PASSCODE_SET_EMPTY, PASSCODE_SET_NOT_EMPTY -> {
                     navController.navigate(R.id.mainActivity)
                     finish()
                 }

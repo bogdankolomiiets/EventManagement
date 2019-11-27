@@ -59,4 +59,6 @@
     <string name="passcode_removed">Passcode has removed</string>
     <string name="passcode_saved">Passcode has saved</string>
     <string name="not_found">Not found</string>
+    <string name="pull_for_more">Pull for more</string>
+    <string name="description">Description</string>
 </resources>

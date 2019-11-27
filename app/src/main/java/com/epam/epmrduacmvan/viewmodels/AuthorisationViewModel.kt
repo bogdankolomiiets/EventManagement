@@ -10,7 +10,7 @@ import com.epam.epmrduacmvan.Constants.Companion.EMPTY_PASSCODE
 import com.epam.epmrduacmvan.Constants.Companion.PASS_CODE
 import com.epam.epmrduacmvan.Constants.Companion.TOKEN_SIGN
 import com.epam.epmrduacmvan.Constants.Companion.USER_TOKEN
-import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET_NOT_EMPTY
 import com.epam.epmrduacmvan.repository.*
 import com.epam.epmrduacmvan.utils.isOnline
 import org.mindrot.jbcrypt.BCrypt
@@ -41,7 +41,7 @@ class AuthorisationViewModel(application: Application) : AndroidViewModel(applic
         }
 
         passCodeRequestStatus.observeForever {
-            if (it == PASSCODE_SET) {
+            if (it == PASSCODE_SET_NOT_EMPTY) {
                 AppApplication.sharedPreferences
                         .edit()
                         .putString(EMAIL, userEmail)

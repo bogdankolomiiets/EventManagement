@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -32,9 +33,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
+    //for test
+    private var testValue = 0
+    private lateinit var descriptionTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        //for test
+        descriptionTextView = findViewById(R.id.description_text)
 
         eventRecyclerViewAdapter = EventRecyclerViewAdapter()
         eventsViewModel = ViewModelProviders.of(this).get(EventsViewModel::class.java)
@@ -100,25 +108,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //just for test
     fun addNewEvent(view: View) {
-        val event = Event(
-            null,
-            "Java meetUp",
-            "description",
-            City(1, "Vinnitsya"),
-            Country(1, "Ukraine"),
-            Language(1, "UKR"),
-            Category(1, "JAVA"),
-            "Ovodova, 51",
-            System.currentTimeMillis(),
-            System.currentTimeMillis(),
-            "",
-            "",
-            "",
-            "",
-            "type",
-            "open",
-            "online"
-        )
-        ViewModelProviders.of(this).get(EventsViewModel::class.java).newEvent(event)
+        if (testValue == 0) {
+            descriptionTextView.text = "Добавим в предыдущую сцену оба набора ограничений. Они почти одинаковые, только зеркально отражены по обеим сторонам экрана.\n" + "\n" + "Теперь у нас три набора ограничений — start, like и pass. Давайте определим переходы (Transition) между этими состояниями."
+            testValue++
+        } else {
+            testValue = 0
+            descriptionTextView.text = "Обратите внимание на эту строку: app:motionDebug=«SHOW_ALL». Она позволяет нам выводить на экран отладочную информацию, траекторию движения объектов, состояния с началом и концом анимации, а также текущий прогресс. Строчка очень помогает при отладке, но не забудьте удалить её, прежде чем отправлять в прод: никакой напоминалки для этого нет."
+        }
     }
 }
