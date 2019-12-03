@@ -10,31 +10,32 @@ import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_REMOVED
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.PASSCODE_SET_NOT_EMPTY
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.RESPONSE_BODY_TO_JSON_FAIL
 import com.epam.epmrduacmvan.UrlConstants.Companion.PASSCODE_CONTROLLER
-import com.epam.epmrduacmvan.UrlConstants.Companion.URL
+import com.epam.epmrduacmvan.UrlConstants.Companion.BASE_URL
+import com.epam.epmrduacmvan.utils.showErrorToast
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
-object BackendPassCodeRepositoryImpl: PassCodeRepository {
+object BackendPassCodeRepositoryImpl {
     private var okHttpClient: OkHttpClient = OkHttpClient()
     private lateinit var request: Request
     private lateinit var jsonObject: JSONObject
     private lateinit var requestBody: RequestBody
     private val mediaType = "application/json; charset=utf-8".toMediaType()
 
-    override fun getPassCode(passCodeRequestStatus: MutableLiveData<Int>, passCodeFromRequest: MutableLiveData<String>) {
+    fun getPassCode(passCodeRequestStatus: MutableLiveData<Int>, passCodeFromRequest: MutableLiveData<String>) {
         request = Request.Builder()
                 .header(TOKEN_HEADER_NAME, AppApplication.token)
-                .url(URL.plus(PASSCODE_CONTROLLER))
+                .url(BASE_URL.plus(PASSCODE_CONTROLLER))
                 .get()
                 .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 call.cancel()
-                passCodeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
+                showErrorToast("Failure: " + e.message)
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -51,21 +52,21 @@ object BackendPassCodeRepositoryImpl: PassCodeRepository {
         })
     }
 
-    override fun setPassCode(passCode: String, passCodeRequestStatus: MutableLiveData<Int>) {
+    fun setPassCode(passCode: String, passCodeRequestStatus: MutableLiveData<Int>) {
         jsonObject = JSONObject()
         jsonObject.put("code", passCode)
         requestBody = jsonObject.toString().toRequestBody(mediaType)
 
         request = Request.Builder()
             .header(TOKEN_HEADER_NAME, AppApplication.token)
-            .url(URL.plus(PASSCODE_CONTROLLER))
+            .url(BASE_URL.plus(PASSCODE_CONTROLLER))
             .method("POST", requestBody)
             .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 call.cancel()
-                passCodeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
+                showErrorToast("Failure: " + e.message)
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -78,21 +79,21 @@ object BackendPassCodeRepositoryImpl: PassCodeRepository {
         })
     }
 
-    override fun removePassCode(passCode: String, passCodeRequestStatus: MutableLiveData<Int>) {
+    fun removePassCode(passCode: String, passCodeRequestStatus: MutableLiveData<Int>) {
         jsonObject = JSONObject()
         jsonObject.put("code", passCode)
         requestBody = jsonObject.toString().toRequestBody(mediaType)
 
         request = Request.Builder()
                 .header(TOKEN_HEADER_NAME, AppApplication.token)
-                .url(URL.plus(PASSCODE_CONTROLLER))
+                .url(BASE_URL.plus(PASSCODE_CONTROLLER))
                 .method("DELETE", requestBody)
                 .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 call.cancel()
-                passCodeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
+                showErrorToast("Failure: " + e.message)
             }
 
             override fun onResponse(call: Call, response: Response) {

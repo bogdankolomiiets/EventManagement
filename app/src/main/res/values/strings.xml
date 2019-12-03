@@ -61,4 +61,8 @@
     <string name="not_found">Not found</string>
     <string name="pull_for_more">Pull for more</string>
     <string name="description">Description</string>
+    <string name="user_not_authorized">User is not authorized</string>
+    <string name="no_events_found">No events found</string>
+    <string name="click_to_create">Click + to create your own event</string>
+    <string name="retry">Retry</string>
 </resources>

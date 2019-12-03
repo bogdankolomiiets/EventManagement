@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import com.epam.epmrduacmvan.Constants.Companion.EMAIL
@@ -18,10 +18,14 @@ import com.epam.epmrduacmvan.Constants.Companion.SHARED_PREF
 import com.epam.epmrduacmvan.Constants.Companion.USER_TOKEN
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.epam.epmrduacmvan.QueryParameters.Parameters.PAGE
 import com.epam.epmrduacmvan.R
 import com.epam.epmrduacmvan.adapters.EventRecyclerViewAdapter
 import com.epam.epmrduacmvan.databinding.ActivityMainBinding
-import com.epam.epmrduacmvan.model.*
+import com.epam.epmrduacmvan.model.Page
+import com.epam.epmrduacmvan.utils.PaginationScrollListener
 import com.epam.epmrduacmvan.viewmodels.EventsViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,29 +33,59 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var eventsViewModel: EventsViewModel
     private lateinit var eventRecyclerViewAdapter: EventRecyclerViewAdapter
+    private lateinit var eventsRecycler: RecyclerView
+    private lateinit var eventsPage: Page
+    private lateinit var noEventsFound: View
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
-    //for test
-    private var testValue = 0
-    private lateinit var descriptionTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        noEventsFound = binding.noEventsFound
 
-        //for test
-        descriptionTextView = findViewById(R.id.description_text)
+        setupRecyclerViewAndAdapter()
 
-        eventRecyclerViewAdapter = EventRecyclerViewAdapter()
         eventsViewModel = ViewModelProviders.of(this).get(EventsViewModel::class.java)
-        eventsViewModel.getEvents().observe(this, Observer {
-            eventRecyclerViewAdapter.setData(it)
+        eventsViewModel.events.observe(this, Observer {
+            noEventsFound.isVisible = it.content.isEmpty()
+            binding.eventLoadingProgressbar.visibility = View.INVISIBLE
+            eventRecyclerViewAdapter.addData(it.content)
+            eventsPage = it
         })
+
+        eventsViewModel.featuredEvents.observe(this, Observer {
+            it.forEach { println(it) }
+        })
+
         drawerLayout = binding.drawerLayout
         drawer_navigation_view.setNavigationItemSelectedListener(this)
         setupActionBar()
+    }
+
+    private fun setupRecyclerViewAndAdapter() {
+        eventsRecycler = binding.eventsRecycler
+        eventsRecycler.setHasFixedSize(true)
+
+        // Creates a vertical Layout Manager
+        val layoutManager = LinearLayoutManager(this)
+        eventsRecycler.layoutManager = layoutManager
+
+        eventsRecycler.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            override fun isLastPage(): Boolean {
+                return eventsPage.last
+            }
+
+            override fun loadMoreItems() {
+                binding.eventLoadingProgressbar.visibility = View.VISIBLE
+                eventsViewModel.queryMap[PAGE] = eventsPage.number.inc()
+                eventsViewModel.getEvents()
+            }
+        })
+
+        eventRecyclerViewAdapter = EventRecyclerViewAdapter()
+        eventsRecycler.adapter = eventRecyclerViewAdapter
     }
 
     private fun setupActionBar() {
@@ -106,14 +140,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun filter(item: MenuItem) {}
 
 
-    //just for test
-    fun addNewEvent(view: View) {
-        if (testValue == 0) {
-            descriptionTextView.text = "Добавим в предыдущую сцену оба набора ограничений. Они почти одинаковые, только зеркально отражены по обеим сторонам экрана.\n" + "\n" + "Теперь у нас три набора ограничений — start, like и pass. Давайте определим переходы (Transition) между этими состояниями."
-            testValue++
-        } else {
-            testValue = 0
-            descriptionTextView.text = "Обратите внимание на эту строку: app:motionDebug=«SHOW_ALL». Она позволяет нам выводить на экран отладочную информацию, траекторию движения объектов, состояния с началом и концом анимации, а также текущий прогресс. Строчка очень помогает при отладке, но не забудьте удалить её, прежде чем отправлять в прод: никакой напоминалки для этого нет."
-        }
-    }
+    fun addNewEvent(view: View) {}
 }

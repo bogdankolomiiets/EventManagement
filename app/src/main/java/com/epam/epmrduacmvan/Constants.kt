@@ -19,5 +19,7 @@ class Constants {
         const val WITHOUT_PASSCODE: Int = -1
         const val NO_INFORMATION: Int = 0
         const val WITH_PASSCODE: Int = 1
+        const val BOOL_EXTRA: String = "BOOL_EXTRA"
+        const val FEATURED_EVENT_COUNT: Int = 5
     }
 }

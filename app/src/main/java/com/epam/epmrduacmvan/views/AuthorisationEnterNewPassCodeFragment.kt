@@ -18,10 +18,11 @@ import com.epam.epmrduacmvan.utils.hideKeyboard
 import kotlinx.android.synthetic.main.fragment_authorisation_pass_code.view.*
 
 class AuthorisationEnterNewPassCodeFragment : AuthorisationPasscodeBaseFragment(), View.OnClickListener {
-    private var userNewPassCode = ""
+    private lateinit var userNewPassCode: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val root = super.onCreateView(inflater, container, savedInstanceState)
+        userNewPassCode = ""
         hideKeyboard(root)
         root.button_forgot.setText(R.string.button_skip)
         return root

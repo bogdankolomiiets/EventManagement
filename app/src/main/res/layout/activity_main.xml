@@ -33,6 +33,7 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent">
@@ -42,8 +43,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_alignParentTop="true"
-                        android:contentDescription="TODO"
-                        android:background="@drawable/bridge_from_internet" />
+                        android:background="@drawable/bridge_from_internet"
+                        android:contentDescription="TODO" />
 
                     <include
                         android:id="@+id/sliding_container"
@@ -53,6 +54,38 @@
                         android:layout_below="@id/image"
                         android:layout_marginTop="-16dp" />
                 </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/events_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+                    tools:listitem="@layout/single_event_item" />
+
+                <include
+                    android:id="@+id/no_events_found"
+                    layout="@layout/no_events_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/relativeLayout"/>
+
+                <ProgressBar
+                    android:id="@+id/event_loading_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/value_30_dp"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:visibility="visible" />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

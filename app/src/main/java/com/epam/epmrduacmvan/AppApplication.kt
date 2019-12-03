@@ -12,11 +12,13 @@ class AppApplication : Application() {
         super.onCreate()
         preferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(USER_TOKEN, "") ?: ""
+        appContext = applicationContext
     }
 
     companion object {
         private lateinit var preferences: SharedPreferences
         var token: String = ""
+        lateinit var appContext: Context
 
         val sharedPreferences: SharedPreferences
             get() = preferences

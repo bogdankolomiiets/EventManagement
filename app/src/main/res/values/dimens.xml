@@ -16,4 +16,5 @@
     <dimen name="value_15_dp">15dp</dimen>
     <dimen name="value_20_dp">20dp</dimen>
     <dimen name="value_19_dp">19dp</dimen>
+    <dimen name="value_12_dp">12dp</dimen>
 </resources>
