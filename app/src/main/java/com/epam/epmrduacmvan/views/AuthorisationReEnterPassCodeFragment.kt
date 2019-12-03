@@ -12,11 +12,12 @@ import com.epam.epmrduacmvan.utils.showCustomSnack
 import kotlinx.android.synthetic.main.fragment_authorisation_pass_code.view.*
 
 class AuthorisationReEnterPassCodeFragment : AuthorisationPasscodeBaseFragment(), View.OnClickListener {
-    private var userReEnterPassCode = ""
+    private lateinit var userReEnterPassCode: String
     private lateinit var userEnterPassCode: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val root = super.onCreateView(inflater, container, savedInstanceState)
+        userReEnterPassCode = ""
         userEnterPassCode = arguments?.getString(USER_NEW_PASSCODE) ?: ""
         root.passcode_title_text.setText(R.string.re_enter_passcode)
         root.passcode_subtitle_text.setText(R.string.please_remember_your_passcode)

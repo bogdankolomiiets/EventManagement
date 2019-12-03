@@ -4,39 +4,39 @@ import androidx.lifecycle.MutableLiveData
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.BAD_REQUEST_400
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.CODE_SENT_OK
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.EMAIL_VERIFIED
-import com.epam.epmrduacmvan.RequestResponseCodes.Companion.INTERNAL_SERVER_ERROR_500
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.OK_200
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.RESPONSE_BODY_TO_JSON_FAIL
 import com.epam.epmrduacmvan.UrlConstants.Companion.CONFIRM_EMAIL_CONTROLLER
 import com.epam.epmrduacmvan.UrlConstants.Companion.SEND_CODE_CONTROLLER
-import com.epam.epmrduacmvan.UrlConstants.Companion.URL
+import com.epam.epmrduacmvan.UrlConstants.Companion.BASE_URL
+import com.epam.epmrduacmvan.utils.showErrorToast
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
-object BackendAuthorisationRepositoryImpl : AuthorisationRepository {
+object BackendAuthorisationRepositoryImpl {
     private var okHttpClient: OkHttpClient = OkHttpClient()
     private lateinit var request: Request
     private lateinit var jsonObject: JSONObject
     private lateinit var requestBody: RequestBody
     private val mediaType = "application/json; charset=utf-8".toMediaType()
 
-    override fun sendCodeOnEmail(userEmail: String, codeRequestStatus: MutableLiveData<Int>) {
+    fun sendCodeOnEmail(userEmail: String, codeRequestStatus: MutableLiveData<Int>) {
         jsonObject = JSONObject()
         jsonObject.put("email", userEmail)
         requestBody = jsonObject.toString().toRequestBody(mediaType)
 
         request = Request.Builder()
-            .url(URL.plus(SEND_CODE_CONTROLLER))
+            .url(BASE_URL.plus(SEND_CODE_CONTROLLER))
             .method("POST", requestBody)
             .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback{
             override fun onFailure(call: Call, e: IOException) {
                 call.cancel()
-                codeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
+                showErrorToast("Failure: " + e.message)
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -49,20 +49,20 @@ object BackendAuthorisationRepositoryImpl : AuthorisationRepository {
         })
     }
 
-    override fun confirmEmail(userEmail: String, codeFromEmail: String, codeRequestStatus: MutableLiveData<Int>, tokenFromRequest: MutableLiveData<String>) {
+    fun confirmEmail(userEmail: String, codeFromEmail: String, codeRequestStatus: MutableLiveData<Int>, tokenFromRequest: MutableLiveData<String>) {
         jsonObject = JSONObject()
         jsonObject.put("email", userEmail).put("code", codeFromEmail)
         requestBody = jsonObject.toString().toRequestBody(mediaType)
 
         request = Request.Builder()
-                .url(URL.plus(CONFIRM_EMAIL_CONTROLLER))
+                .url(BASE_URL.plus(CONFIRM_EMAIL_CONTROLLER))
                 .method("POST", requestBody)
                 .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 call.cancel()
-                codeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
+                showErrorToast("Failure: " + e.message)
             }
 
             override fun onResponse(call: Call, response: Response) {
