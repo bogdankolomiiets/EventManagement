@@ -13,7 +13,7 @@ import com.epam.epmrduacmvan.Constants.Companion.PASS_CODE
 import com.epam.epmrduacmvan.Constants.Companion.WITHOUT_PASSCODE
 import com.epam.epmrduacmvan.Constants.Companion.WITH_PASSCODE
 import com.epam.epmrduacmvan.AppApplication
-import com.epam.epmrduacmvan.Constants
+import com.epam.epmrduacmvan.Constants.Companion.BOOL_EXTRA
 import com.epam.epmrduacmvan.Constants.Companion.EMPTY_PASSCODE
 import com.epam.epmrduacmvan.R
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.BAD_REQUEST_400
@@ -41,9 +41,9 @@ class StartActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         val navGraph = navController.navInflater.inflate(R.navigation.main_nav_graph)
 
-        val gotError = intent.getBooleanExtra(Constants.BOOL_EXTRA, false)
+        val isEventsLoaded = intent.getBooleanExtra(BOOL_EXTRA, false)
 
-        if (!gotError) {
+        if (isEventsLoaded) {
             navGraph.startDestination = (
                     when (haveUserData()) {
                         WITHOUT_PASSCODE -> R.id.mainActivity
@@ -96,8 +96,7 @@ class StartActivity : AppCompatActivity() {
 
         fun obtainViewModel(fragment: Fragment): AuthorisationViewModel {
             if (authorisationViewModel == null) {
-                authorisationViewModel =
-                    ViewModelProviders.of(fragment).get(AuthorisationViewModel::class.java)
+                authorisationViewModel = ViewModelProviders.of(fragment).get(AuthorisationViewModel::class.java)
             }
             return authorisationViewModel as AuthorisationViewModel
         }

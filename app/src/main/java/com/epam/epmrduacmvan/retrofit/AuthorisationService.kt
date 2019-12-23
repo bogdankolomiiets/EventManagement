@@ -4,7 +4,6 @@ import com.epam.epmrduacmvan.UrlConstants.Companion.CONFIRM_EMAIL_CONTROLLER
 import com.epam.epmrduacmvan.UrlConstants.Companion.SEND_CODE_CONTROLLER
 import com.epam.epmrduacmvan.model.Token
 import com.google.gson.JsonObject
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 

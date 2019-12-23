@@ -36,12 +36,11 @@ class SplashScreenActivity: AppCompatActivity() {
             retryButton.isVisible = true
         } else {
             retryButton.isVisible = false
-
             if (AppApplication.token.isNotEmpty()) {
                 //init EventsViewModel
                 ViewModelProviders.of(this).get(AdditionalDataViewModel::class.java)
                 eventsViewModel = ViewModelProviders.of(this).get(EventsViewModel::class.java)
-                eventsViewModel.gotError.observe(this, Observer {
+                eventsViewModel.isEventsLoaded.observe(this, Observer {
                     startActivity(Intent(this, StartActivity::class.java).putExtra(BOOL_EXTRA, it))
                     finish()
                 })

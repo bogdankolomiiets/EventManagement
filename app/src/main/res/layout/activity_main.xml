@@ -38,21 +38,104 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/image"
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/dot_view_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
-                        android:background="@drawable/bridge_from_internet"
-                        android:contentDescription="TODO" />
+                        android:layout_alignParentEnd="true" />
+
+                    <LinearLayout
+                        android:id="@+id/dot_container"
+                        android:layout_width="40dp"
+                        android:layout_height="8dp"
+                        android:layout_above="@id/sliding_container"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginBottom="@dimen/value_8_dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/image_dot_one"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/dot_indicator"
+                            android:foregroundGravity="clip_horizontal"
+                            app:srcCompat="@drawable/ic_dot_active" />
+
+                        <ImageView
+                            android:id="@+id/image_dot_two"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/dot_indicator"
+                            android:paddingStart="7dp"
+                            android:paddingEnd="7dp"
+                            app:srcCompat="@drawable/ic_dot" />
+
+                        <ImageView
+                            android:id="@+id/image_dot_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/dot_indicator"
+                            app:srcCompat="@drawable/ic_dot" />
+
+                    </LinearLayout>
 
                     <include
                         android:id="@+id/sliding_container"
                         layout="@layout/pull_for_more_start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/image"
+                        android:layout_below="@id/dot_view_pager"
                         android:layout_marginTop="-16dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_simple_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toStartOf="@+id/button_calendar"
+                        android:elevation="@dimen/value_4_dp"
+                        tools:listitem="@layout/custom_simple_calendar" />
+
+                    <TextView
+                        android:id="@+id/button_calendar"
+                        android:layout_width="82dp"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/bottom_gradient"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/change_color_calendar"
+                        android:drawableTop="@drawable/ic_calendar"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="bottom|center_horizontal"
+                        android:paddingStart="@dimen/value_8_dp"
+                        android:paddingTop="@dimen/value_8_dp"
+                        android:paddingEnd="@dimen/value_8_dp"
+                        android:paddingBottom="@dimen/value_8_dp"
+                        android:textColor="@color/colorScooter"
+                        android:textSize="@dimen/textSize10sp"
+                        tools:text="December" />
+
+                    <TextView
+                        android:id="@+id/bottom_gradient"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/gradient_color" />
+
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -62,7 +145,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_simple_calendar"
                     tools:listitem="@layout/single_event_item" />
 
                 <include
@@ -73,7 +156,7 @@
                     android:layout_marginTop="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/relativeLayout"/>
+                    app:layout_constraintTop_toTopOf="@id/events_recycler" />
 
                 <ProgressBar
                     android:id="@+id/event_loading_progressbar"
@@ -87,7 +170,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:visibility="visible" />
 
-
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/new_event_fab"
                     android:layout_width="wrap_content"
@@ -96,19 +178,24 @@
                     android:layout_marginBottom="@dimen/value_16_dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="addNewEvent"
+                    android:onClick="showNewEventActivity"
                     app:backgroundTint="@color/colorScooter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_add" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawer_navigation_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
+                android:theme="@style/NavigationViewStyle"
+                android:background="@drawable/drawer_gradient_background"
                 app:headerLayout="@layout/drawer_layout_header"
+                app:itemTextAppearance="@style/NavigationViewMenuItemStyle"
+                app:itemIconTint="@color/colorWhiteOpacity50"
                 app:menu="@menu/nav_drawer_menu" />
         </androidx.drawerlayout.widget.DrawerLayout>
     </LinearLayout>

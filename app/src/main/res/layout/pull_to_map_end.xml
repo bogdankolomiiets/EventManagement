@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/event_info_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pull_for_more_background"
+    app:layoutDescription="@xml/pull_to_map_motion_scene"
+    android:elevation="@dimen/value_4_dp">
+
+    <ImageView
+        android:id="@+id/map_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/map_image"
+        android:src="@drawable/screenshot" />
+
+    <LinearLayout
+        android:id="@+id/pull_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/isometric_image"
+        android:elevation="@dimen/value_4_dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/pull_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_expand_more"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/pull_to_map"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize12sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="50dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/value_16_dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_profile_image"
+        android:layout_width="@dimen/value_90_dp"
+        android:layout_height="@dimen/value_90_dp"
+        android:layout_marginEnd="@dimen/value_8_dp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/epam"
-        android:contentDescription="@string/epam_logo"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingTop="@dimen/value_8_dp"
+            android:paddingBottom="@dimen/value_8_dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize18sp"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textIsSelectable="true"
+            android:scrollHorizontally="true"
+            tools:text="Bohdan Kolomiiets" />
+
+        <TextView
+            android:id="@+id/user_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingTop="@dimen/value_8_dp"
+            android:paddingBottom="@dimen/value_8_dp"
+            android:textColor="@color/colorScooter"
+            android:textSize="@dimen/textSize14sp"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textIsSelectable="true"
+            android:scrollHorizontally="true"
+            tools:text="bohdan_kolomiiets@emam.com" />
+
+        <RatingBar
+            android:id="@+id/user_profile_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/event_info_container"
     android:layout_width="match_parent"
@@ -8,69 +7,374 @@
     android:background="@drawable/pull_for_more_background"
     app:layoutDescription="@xml/pull_motion_scene">
 
-    <TextView
-        android:id="@+id/event_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/value_20_dp"
-        android:background="@color/colorAmber"
-        android:fontFamily="@font/roboto_regular"
-        android:paddingTop="@dimen/value_4_dp"
-        android:paddingBottom="@dimen/value_4_dp"
-        android:paddingStart="@dimen/value_8_dp"
-        android:paddingEnd="@dimen/value_8_dp"
-        android:text="@string/registration"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/textSize10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/event_description_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/value_16_dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/value_15_dp"
         android:layout_marginTop="@dimen/value_19_dp"
+        android:layout_marginEnd="@dimen/value_15_dp"
+        android:gravity="bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/event_status"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/description_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:paddingTop="@dimen/value_4_dp"
-            android:paddingBottom="@dimen/value_4_dp"
-            android:text="@string/description"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize12sp" />
-
-        <TextView
-            android:id="@+id/description_text"
+            android:id="@+id/text_number_of_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light"
-            android:paddingEnd="@dimen/value_8_dp"
-            android:text="To create an exciting and motivating educational
-process, the IT Ukraine Association and EPAM Ukraine
-attracts the best lecturers and the most proactive
-teachers, who support the idea of the free knowledge
-distribution among the people. We are assisted by the
-Ministry of Education and Science, state educational institutions"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/number_of_results"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize12sp" />
-    </LinearLayout>
+            android:textSize="@dimen/textSize12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_shake_to_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/roboto"
+            android:paddingTop="@dimen/value_4_dp"
+            android:text="@string/shake_to_clear"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_shake_to_clear"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radio_button_all"
+                style="@style/RadioButtonOnFilterScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/roboto"
+                android:layoutDirection="rtl"
+                android:text="@string/all"
+                android:textColor="@color/colorWhite" />
+
+            <RadioButton
+                android:id="@+id/radio_button_my_events"
+                style="@style/RadioButtonOnFilterScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layoutDirection="rtl"
+                android:paddingEnd="@dimen/value_10_dp"
+                android:text="@string/my_events_title"
+                android:textColor="@color/colorWhite" />
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/layout_select_date_start_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radio_group"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:paddingTop="@dimen/value_10_dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group">
+
+            <TextView
+                android:id="@+id/text_date_start_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/start"
+                android:textColor="@color/colorBlizzardBlue"
+                android:textSize="@dimen/textSize12sp" />
+
+            <ImageView
+                android:id="@+id/image_date_start_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_date_start_filter"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="@dimen/value_10_dp"
+                app:srcCompat="@drawable/ic_today"
+                android:contentDescription="@string/small_calendar"/>
+
+            <TextView
+                android:id="@+id/text_select_date_start_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/value_16_dp"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@+id/image_date_start_calendar"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="@string/dd_mm_yyyy"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteOpacity75"
+                android:textSize="@dimen/textSize14sp" />
+
+            <TextView
+                android:id="@+id/text_date_start_bottom_line"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@+id/text_select_date_start_filter"
+                android:layout_alignStart="@+id/text_select_date_start_filter"
+                android:layout_alignEnd="@+id/image_date_start_arrow_drop_down"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorWhiteOpacity75"
+                android:paddingEnd="@dimen/value_4_dp" />
+
+            <ImageView
+                android:id="@+id/image_date_start_arrow_drop_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/text_select_date_start_filter"
+                app:srcCompat="@drawable/ic_arrow_drop_down"
+                android:contentDescription="@string/arrow_down"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_select_date_end_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radio_group"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:paddingStart="@dimen/value_10_dp"
+            android:paddingTop="@dimen/value_10_dp"
+            android:paddingEnd="@dimen/value_30_dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group">
+
+            <TextView
+                android:id="@+id/text_date_end_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/end"
+                android:textColor="@color/colorBlizzardBlue"
+                android:textSize="@dimen/textSize12sp" />
+
+            <ImageView
+                android:id="@+id/image_date_end_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_date_end_filter"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="@dimen/value_10_dp"
+                app:srcCompat="@drawable/ic_today"
+                android:contentDescription="@string/small_calendar"/>
+
+            <TextView
+                android:id="@+id/text_select_date_end_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/value_16_dp"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@+id/image_date_end_calendar"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="@string/dd_mm_yyyy"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteOpacity75"
+                android:textSize="@dimen/textSize14sp" />
+
+            <TextView
+                android:id="@+id/text_date_end_bottom_line"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@+id/text_select_date_end_filter"
+                android:layout_alignStart="@+id/text_select_date_end_filter"
+                android:layout_alignEnd="@+id/image_date_end_arrow_drop_down"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorWhiteOpacity75"
+                android:paddingEnd="@dimen/value_4_dp" />
+
+            <ImageView
+                android:id="@+id/image_date_end_arrow_drop_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/text_select_date_end_filter"
+                app:srcCompat="@drawable/ic_arrow_drop_down"
+                android:contentDescription="@string/arrow_down"/>
+        </RelativeLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_select_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_select_date_start_filter"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/value_10_dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:hint="@string/select_categories"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingTop="@dimen/value_20_dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteOpacity75"
+            android:textCursorDrawable="@color/colorWhiteOpacity75"
+            android:textSize="@dimen/textSize16sp"
+            android:theme="@style/AppTheme.AutoCompleteTextViewStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_select_date_start_filter" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_select_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_select_categories"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:hint="@string/select_city"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingTop="@dimen/value_20_dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteOpacity75"
+            android:textCursorDrawable="@color/colorWhiteOpacity75"
+            android:textSize="@dimen/textSize16sp"
+            android:theme="@style/AppTheme.AutoCompleteTextViewStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_select_categories" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_select_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_select_city"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:hint="@string/select_country"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingTop="@dimen/value_20_dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteOpacity75"
+            android:textCursorDrawable="@color/colorWhiteOpacity75"
+            android:textSize="@dimen/textSize16sp"
+            android:theme="@style/AppTheme.AutoCompleteTextViewStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_select_city" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_select_speakers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_select_country"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:hint="@string/select_speakers"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingTop="@dimen/value_20_dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteOpacity75"
+            android:textCursorDrawable="@color/colorWhiteOpacity75"
+            android:textSize="@dimen/textSize16sp"
+            android:theme="@style/AppTheme.AutoCompleteTextViewStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_select_country" />
+
+        <AutoCompleteTextView
+            android:id="@+id/select_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_select_speakers"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:hint="@string/select_language"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingTop="@dimen/value_20_dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteOpacity75"
+            android:textCursorDrawable="@color/colorWhiteOpacity75"
+            android:textSize="@dimen/textSize16sp"
+            android:theme="@style/AppTheme.AutoCompleteTextViewStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_select_speakers" />
+
+        <TextView
+            android:id="@+id/check_box_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/show_on_line_events"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize16sp"
+            app:layout_constraintEnd_toStartOf="@+id/check_box"
+            app:layout_constraintTop_toBottomOf="@+id/select_language" />
+
+        <CheckBox
+            android:id="@+id/check_box"
+            style="@style/RadioButtonOnFilterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_language" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/pull_button"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/isometric_image"
-        android:gravity="center"
         android:elevation="@dimen/value_4_dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -79,11 +383,11 @@ Ministry of Education and Science, state educational institutions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_expand_more"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center"
-            android:text="@string/pull_for_more"
+            android:text="@string/pull_to_filter"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize12sp"
-            android:fontFamily="@font/roboto_regular"/>
+            android:textSize="@dimen/textSize12sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

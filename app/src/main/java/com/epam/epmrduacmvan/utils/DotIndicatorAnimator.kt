@@ -8,7 +8,7 @@ import android.view.animation.AnimationUtils
 import androidx.core.view.get
 import com.epam.epmrduacmvan.R
 
-class DotIndicatorAnimator(val viewGroup: ViewGroup) {
+class DotIndicatorAnimator(private val viewGroup: ViewGroup) {
     private var indicatorAnimation: Animation
     private lateinit var viewsArray: Array<View>
     private lateinit var indicatorsArray: Array<AnimationDrawable>

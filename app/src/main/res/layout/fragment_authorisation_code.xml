@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     app:layout_constraintHorizontal_chainStyle="spread_inside">
 
     <TextView
@@ -40,71 +39,39 @@
 
         <EditText
             android:id="@+id/edit_num_one"
+            style="@style/EditConfirmationCodeStyle"
+            android:hint="@string/hint_edit_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:cursorVisible="false"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/hint_edit_code"
-            android:inputType="numberPassword"
-            android:maxLength="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorBittersweet"
-            android:textColorHint="@color/colorBittersweetOpacity20"
-            android:textSize="48sp" />
+            android:autofillHints=""
+            tools:targetApi="O"/>
 
         <EditText
             android:id="@+id/edit_num_two"
+            style="@style/EditConfirmationCodeStyle"
+            android:hint="@string/hint_edit_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:cursorVisible="false"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/hint_edit_code"
-            android:inputType="numberPassword"
-            android:maxLength="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorBittersweet"
-            android:textColorHint="@color/colorBittersweetOpacity20"
-            android:textSize="48sp" />
+            android:autofillHints=""
+            tools:targetApi="O"/>
 
         <EditText
             android:id="@+id/edit_num_three"
+            style="@style/EditConfirmationCodeStyle"
+            android:hint="@string/hint_edit_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:cursorVisible="false"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/hint_edit_code"
-            android:inputType="numberPassword"
-            android:maxLength="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorBittersweet"
-            android:textColorHint="@color/colorBittersweetOpacity20"
-            android:textSize="48sp" />
+            android:autofillHints=""
+            tools:targetApi="O"/>
 
         <EditText
             android:id="@+id/edit_num_four"
+            style="@style/EditConfirmationCodeStyle"
+            android:hint="@string/hint_edit_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:cursorVisible="false"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/hint_edit_code"
-            android:inputType="numberPassword"
-            android:maxLength="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorBittersweet"
-            android:textColorHint="@color/colorBittersweetOpacity20"
-            android:textSize="48sp" />
+            android:autofillHints=""
+            tools:targetApi="O"/>
 
     </LinearLayout>
 
@@ -124,7 +91,7 @@
         android:id="@+id/text_send_again"
         style="@style/TextStyleRobotoMedium"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/value_4_dp"
+        android:layout_marginStart="4dp"
         android:layout_marginBottom="@dimen/value_16_dp"
         android:letterSpacing="0.1"
         android:text="@string/send_again"

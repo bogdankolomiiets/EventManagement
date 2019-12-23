@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene xmlns:motion="http://schemas.android.com/apk/res-auto">
+<MotionScene
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
     <Transition
-        motion:constraintSetStart="@layout/pull_for_more_start"
         motion:constraintSetEnd="@layout/pull_for_more_end"
+        motion:constraintSetStart="@layout/pull_for_more_start"
         motion:duration="500">
         <OnSwipe
+            motion:dragDirection="dragUp"
             motion:touchAnchorId="@+id/pull_button"
-            motion:touchAnchorSide="bottom"
-            motion:dragDirection="dragUp" />
+            motion:touchAnchorSide="bottom" />
     </Transition>
 </MotionScene>
