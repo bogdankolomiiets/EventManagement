@@ -1,10 +1,8 @@
 package com.epam.epmrduacmvan.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -18,14 +16,15 @@ import androidx.navigation.findNavController
 import com.epam.epmrduacmvan.Constants.Companion.CODE_LENGTH
 import androidx.lifecycle.Observer
 import com.epam.epmrduacmvan.R
-import com.epam.epmrduacmvan.utils.showCustomSnack
-import kotlinx.android.synthetic.main.fragment_authorisation_code.view.*
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.BAD_REQUEST_400
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.CODE_SENT_OK
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.EMAIL_VERIFIED
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.ERASE_CODE
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.INTERNAL_SERVER_ERROR_500
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.NOT_FOUND_404
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.RESPONSE_BODY_TO_JSON_FAIL
+import com.epam.epmrduacmvan.utils.showCustomSnack
+import kotlinx.android.synthetic.main.fragment_authorisation_code.view.*
 import com.epam.epmrduacmvan.utils.isOnline
 
 class AuthorisationCodeFragment : Fragment() {
@@ -34,6 +33,7 @@ class AuthorisationCodeFragment : Fragment() {
     private lateinit var editTextArray: Array<EditText>
     private lateinit var shakeAnimation: Animation
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         confirmationCode = ""
         val root = inflater.inflate(R.layout.fragment_authorisation_code, container, false)
@@ -47,10 +47,15 @@ class AuthorisationCodeFragment : Fragment() {
         })
 
         editTextArray = arrayOf()
-        for (i in 0 until root.code_container.childCount) {
+        for (i in 0 until codeContainer.childCount) {
             val count: Int = i
-            editTextArray += root.code_container[i] as EditText
+
+            editTextArray += codeContainer[i] as EditText
             editTextArray[i].transformationMethod = null
+            editTextArray[i].setOnTouchListener { _: View?, _: MotionEvent? ->
+                return@setOnTouchListener true
+            }
+
             editTextArray[i].doAfterTextChanged {
                 if (confirmationCode.length < 3) {
                     confirmationCode += editTextArray[i].text
@@ -60,7 +65,6 @@ class AuthorisationCodeFragment : Fragment() {
                 }
                 if (confirmationCode.length == CODE_LENGTH) {
                     StartActivity.obtainViewModel(this).confirmEmail(confirmationCode)
-//                    view?.findNavController()?.navigate(R.id.action_authorisationCodeFragment_to_authorisationEnterNewPassCodeFragment)
                 }
             }
             editTextArray[i].setOnKeyListener { _, eventCode, _ ->
@@ -74,7 +78,6 @@ class AuthorisationCodeFragment : Fragment() {
         root.text_send_again.setOnClickListener {
             if (isOnline(it.context)) {
                 StartActivity.obtainViewModel(this).sendCodeOnEmail()
-                //showCustomSnack(it, R.string.code_has_been_resent)
             }
         }
 
@@ -116,5 +119,10 @@ class AuthorisationCodeFragment : Fragment() {
         confirmationCode = ""
         clearCodeContainer()
         editTextArray[0].requestFocus()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        StartActivity.obtainViewModel(this).codeRequestStatus.postValue(ERASE_CODE)
     }
 }

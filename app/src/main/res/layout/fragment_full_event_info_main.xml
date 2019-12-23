@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.epam.epmrduacmvan.model.Event" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorScooterOpacity50">
+
+                <LinearLayout
+                    android:id="@+id/event_date_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/count_of_participants_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:contentDescription="@string/language"
+                        android:src="@drawable/ic_access_time" />
+
+                    <TextView
+                        android:id="@+id/event_date"
+                        style="@style/FullEventInfoStyle"
+                        longToDateForFullEventInfo="@{event.startDateTime}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        tools:text="25 Nov - 9:00" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/count_of_participants_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/event_price_container"
+                    app:layout_constraintStart_toEndOf="@+id/event_date_container"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/count_of_participants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:drawableStart="@drawable/account_multiple"
+                        android:drawablePadding="@dimen/value_8_dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="@{event.attendeeCount.toString()}"
+                        android:textColor="@color/colorRedDamask"
+                        android:textSize="25sp"
+                        tools:text="123" />
+
+                    <TextView
+                        style="@style/FullEventInfoStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:text="@string/people" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/event_price_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/count_of_participants_container"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/event_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        eventPriceToString="@{event.price}"
+                        android:textColor="@color/colorRedDamask"
+                        android:textSize="25sp"
+                        tools:text="0" />
+
+                    <TextView
+                        style="@style/FullEventInfoStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|top"
+                        android:text="@string/price" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/event_language_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/event_location_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_date_container">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:contentDescription="@string/language"
+                        android:src="@drawable/ic_language_scooter" />
+
+                    <TextView
+                        android:id="@+id/event_language"
+                        style="@style/FullEventInfoStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:text="@{event.language.name}"
+                        tools:text="English" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/event_location_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/user_experience_container"
+                    app:layout_constraintStart_toEndOf="@+id/event_language_container"
+                    app:layout_constraintTop_toBottomOf="@id/count_of_participants_container">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:contentDescription="@string/location"
+                        android:src="@drawable/ic_location_scooter" />
+
+                    <TextView
+                        android:id="@+id/event_location"
+                        style="@style/FullEventInfoStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:text="@{event.city.name}"
+                        tools:text="Vinnytsia" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user_experience_container"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/value_80_dp"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/event_location_container"
+                    app:layout_constraintTop_toBottomOf="@id/event_price_container">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/value_32_dp"
+                        android:layout_marginTop="@dimen/value_8_dp"
+                        android:contentDescription="@string/user_experience"
+                        android:src="@drawable/label_outline" />
+
+                    <TextView
+                        android:id="@+id/user_experience"
+                        style="@style/FullEventInfoStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:text="@string/user_experience" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/value_16_dp"
+                android:layout_marginTop="@dimen/value_8_dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="@string/description"
+                android:textColor="@color/colorRegentGray"
+                android:textSize="@dimen/textSize16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_language_container" />
+
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="3"
+                android:padding="@dimen/value_16_dp"
+                android:lineSpacingExtra="@dimen/value_8_dp"
+                android:text="@{event.description}"
+                android:textColor="@color/colorTundora"
+                android:textSize="@dimen/textSize14sp" />
+
+            <TextView
+                android:id="@+id/read_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:text="@string/read_more"
+                android:fontFamily="@font/roboto_regular"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right"
+                android:textSize="@dimen/textSize12sp"
+                android:textColor="@color/colorScooter"
+                android:paddingBottom="@dimen/value_8_dp"/>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

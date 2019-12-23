@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/registration"
+        android:icon="@drawable/ic_headset_gray"
+        android:title="@string/registration" />
+
+    <item
+        android:id="@+id/cancel_registration"
+        android:icon="@drawable/ic_exit_gray"
+        android:title="@string/cancel_registration"
+        android:visible="false" />
+
+    <item
+        android:id="@+id/become_a_speaker"
+        android:icon="@drawable/ic_mic_gray"
+        android:title="@string/become_a_speaker" />
+
+    <group android:id="@+id/favorites_group">
+        <item
+            android:id="@+id/add_to_favorites"
+            android:icon="@drawable/heart_outline_gray"
+            android:title="@string/add_to_favorites" />
+    </group>
+
+</menu>

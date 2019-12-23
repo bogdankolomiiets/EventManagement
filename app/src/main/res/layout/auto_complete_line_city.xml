@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="@dimen/value_8_dp"
+    android:layout_marginEnd="@dimen/value_8_dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_text_city_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_line_city"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_weight="60"
+            android:gravity="start|center_vertical"
+            android:paddingStart="@dimen/value_8_dp"
+            android:textColor="@color/colorTundora"
+            android:textSize="16sp"
+            tools:text="@string/city" />
+
+        <TextView
+            android:id="@+id/text_line_country"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_weight="40"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="@dimen/value_8_dp"
+            android:textColor="@color/colorTundoraOpacity54"
+            android:textSize="16sp"
+            tools:text="@string/country" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_line_city_country_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorCadetBlueOpacity54"/>
+</LinearLayout>

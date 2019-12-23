@@ -1,47 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
         <variable
             name="event"
             type="com.epam.epmrduacmvan.model.Event" />
+
     </data>
 
     <RelativeLayout
         android:id="@+id/single_event_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/value_8_dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/event_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:id="@+id/date_information_container"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/colorAmber"
-            android:fontFamily="@font/roboto"
-            android:paddingStart="@dimen/value_8_dp"
-            android:paddingTop="@dimen/value_4_dp"
-            android:paddingEnd="@dimen/value_8_dp"
-            android:paddingBottom="@dimen/value_4_dp"
-            android:text="@{event.status}"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textSize10sp"
-            tools:text="@string/registration" />
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorMischkaOpacity25">
+
+            <TextView
+                android:id="@+id/text_time_event"
+                LongToTime="@{event.startDateTime}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:textColor="@color/colorWaikawaGray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/text_date_event"
+                longToDateForEvent="@{event.startDateTime}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_time_event"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="9dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:textColor="@color/colorWaikawaGrayOpacity50"
+                android:textSize="9sp" />
+
+            <ImageView
+                android:id="@+id/participant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_date_event"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_headset_green"
+                android:contentDescription="@string/participants"
+                tools:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/speaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_date_event"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_mic"
+                android:contentDescription="@string/speakers"
+                tools:visibility="visible"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/info_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/date_information_container"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_location_gray"
+                android:drawablePadding="@dimen/value_4_dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:text="@{event.city.name}"
+                android:textColor="@color/colorCadetBlueGray"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/location" />
+
+            <TextView
+                android:id="@+id/event_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_language_gray"
+                android:drawablePadding="@dimen/value_4_dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_4_dp"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:text="@{event.language.name}"
+                android:textColor="@color/colorCadetBlueGray"
+                android:textSize="@dimen/textSize10sp"
+                tools:text="@string/language" />
+
+            <TextView
+                android:id="@+id/event_format"
+                OnlineOrOffline="@{event.format}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cast_gray"
+                android:drawablePadding="@dimen/value_4_dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_4_dp"
+                android:paddingEnd="@dimen/value_4_dp"
+                android:textColor="@color/colorCadetBlueGray"
+                android:textSize="@dimen/textSize10sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/single_event_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/info_container"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/value_8_dp"
-            android:layout_marginEnd="@dimen/value_16_dp"
+            android:layout_marginStart="12dp"
             android:layout_toStartOf="@+id/overflow_menu"
+            android:layout_toEndOf="@+id/date_information_container"
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
+            android:maxLines="1"
             android:paddingTop="@dimen/value_4_dp"
             android:paddingBottom="@dimen/value_4_dp"
             android:text="@{event.title}"
@@ -61,79 +171,38 @@
 
         <LinearLayout
             android:id="@+id/speakers_container"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/value_30_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@id/single_event_title"
-            android:layout_alignStart="@+id/single_event_title"
-            android:orientation="horizontal">
+            android:layout_marginStart="@dimen/value_10_dp"
+            android:layout_toEndOf="@+id/date_information_container"
+            android:gravity="center"
+            android:orientation="horizontal" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/info_container"
+        <TextView
+            android:id="@+id/event_stage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/speakers_container"
+            android:layout_above="@id/text_line_bottom"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="@dimen/value_30_dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="2dp"
+            android:background="@color/colorAmber"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:paddingStart="@dimen/value_15_dp"
+            android:paddingEnd="@dimen/value_15_dp"
+            android:text="@{event.stage == null ? event.STAGE_REGISTRATION : event.stage}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize10sp"
+            tools:text="@string/registration" />
 
-            <TextView
-                android:id="@+id/event_format"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_cast"
-                android:drawablePadding="4dp"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="center"
-                android:paddingStart="@dimen/value_16_dp"
-                android:paddingEnd="@dimen/value_4_dp"
-                android:text="@{event.format}"
-                android:textColor="@color/colorWaikawaGrayOpacity50"
-                android:textSize="@dimen/textSize10sp"
-                tools:text="@string/on_line" />
-
-            <TextView
-                android:id="@+id/event_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_location"
-                android:drawablePadding="@dimen/value_4_dp"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="center"
-                android:paddingStart="@dimen/value_4_dp"
-                android:paddingEnd="@dimen/value_4_dp"
-                android:text="@{event.city.name}"
-                android:textColor="@color/colorWaikawaGrayOpacity50"
-                android:textSize="@dimen/textSize10sp"
-                tools:text="@string/location" />
-
-            <TextView
-                android:id="@+id/event_language"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_language"
-                android:drawablePadding="@dimen/value_4_dp"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="center"
-                android:paddingStart="@dimen/value_4_dp"
-                android:paddingEnd="@dimen/value_4_dp"
-                android:text="@{event.language.name}"
-                android:textColor="@color/colorWaikawaGrayOpacity50"
-                android:textSize="@dimen/textSize10sp"
-                tools:text="@string/language" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="@dimen/value_30_dp"
-            android:layout_height="@dimen/value_30_dp"
-            android:layout_alignParentEnd="true"
+        <TextView
+            android:id="@+id/text_line_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/triangle_background"
-            android:contentDescription="@string/triangle_image"
-            android:paddingStart="@dimen/value_12_dp"
-            android:paddingTop="12dp"
-            android:src="@drawable/ic_mic" />
+            android:background="@color/colorMercury" />
+
     </RelativeLayout>
 </layout>

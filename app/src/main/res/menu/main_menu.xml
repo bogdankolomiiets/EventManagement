@@ -6,13 +6,5 @@
         android:id="@+id/search"
         android:title="@string/search"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_search"
-        android:onClick="search"/>
-
-    <item
-        android:id="@+id/filter"
-        android:title="@string/filter"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/filter_menu_outline"
-        android:onClick="filter"/>
+        android:icon="@drawable/ic_search_scooter" />
 </menu>

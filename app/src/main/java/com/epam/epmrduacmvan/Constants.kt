@@ -2,7 +2,9 @@ package com.epam.epmrduacmvan
 
 class Constants {
     companion object {
-        val EMAIL_PATTERN_V1: Regex = Regex("^([\\w.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
+        /* alternative email regex
+        *val EMAIL_PATTERN_V1: Regex = Regex("^([\\w.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)\$")
+        * */
 
         // email regex pattern from
         // https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression
@@ -20,6 +22,11 @@ class Constants {
         const val NO_INFORMATION: Int = 0
         const val WITH_PASSCODE: Int = 1
         const val BOOL_EXTRA: String = "BOOL_EXTRA"
-        const val FEATURED_EVENT_COUNT: Int = 5
+        const val FEATURED_EVENT_COUNT: Int = 3
+        const val CITY: String = "CITY"
+        const val CATEGORY: String = "CATEGORY"
+        const val EVENT: String = "EVENT"
+        const val ROUND_ICONS_WIDTH: Int = 90
+        const val ROUND_ICONS_HEIGHT: Int = 90
     }
 }

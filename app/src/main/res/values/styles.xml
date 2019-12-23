@@ -14,12 +14,23 @@
         <item name="colorPrimaryDark">@android:color/white</item>
     </style>
 
+    <style name="NewEventActivityStyle" parent="AppTheme">
+        <item name="colorControlNormal">@color/colorWaikawaGrayOpacity50</item>
+        <item name="colorControlActivated">@color/colorScooter</item>
+    </style>
+
     <style name="ToolBarTitleStyle">
         <item name="android:gravity">center</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/colorScooter</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ToolBarNewEventTitleStyle" parent="ToolBarTitleStyle">
+        <item name="colorControlNormal">@color/colorScooter</item>
+        <item name="android:layout_marginEnd">?actionBarSize</item>
+        <item name="android:layout_marginStart">?actionBarSize</item>
     </style>
 
     <style name="AppTheme.Launcher">
@@ -73,4 +84,64 @@
         <item name="android:padding">@dimen/value_4_dp</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="EditConfirmationCodeStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorBittersweet</item>
+        <item name="android:textColorHint">@color/colorBittersweetOpacity20</item>
+        <item name="android:textSize">@dimen/textSize48sp</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+    <style name="SelectDateStyle">
+        <item name="android:elevation">4dp</item>
+        <item name="android:translationZ">4dp</item>
+    </style>
+
+    <style name="checkBoxStyle" parent="AppTheme">
+        <item name="colorAccent">@color/colorWattle</item>
+        <item name="colorControlNormal">@color/colorWaikawaGray</item>
+    </style>
+
+    <style name="DateTimePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorScooter
+        </item>                   <!--header background-->
+        <item name="android:colorControlActivated">@color/colorWattle</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/colorWaikawaGray
+        </item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/colorCadetBlue
+        </item>    <!--days of the week-->
+    </style>
+
+    <style name="FullEventInfoStyle">
+        <item name="android:fontFamily">@font/roboto_condensed_bold</item>
+        <item name="android:textColor">@color/colorTundora</item>
+        <item name="android:padding">@dimen/value_4_dp</item>
+    </style>
+
+    <style name="NavigationViewMenuItemStyle">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textSize16sp</item>
+    </style>
+
+    <style name="NavigationViewStyle">
+        <item name="android:listDivider">@color/colorWhiteOpacity50</item>
+    </style>
+
+    <style name="RadioButtonOnFilterScreen">
+        <item name="android:buttonTint">@drawable/change_color_radio_button</item>
+    </style>
+
+    <style name="AppTheme.AutoCompleteTextViewStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorControlActivated">@color/colorScooterOpacity75</item>
+        <item name="android:colorControlNormal">@color/colorWhiteOpacity75</item>
+    </style>
+
 </resources>

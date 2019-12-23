@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="event"
+            type="com.epam.epmrduacmvan.model.Event" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.FeaturedEventFragment">
+
+        <ImageView
+            android:id="@+id/image_featured_event"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:getImageFromUrl="@{event.eventPhotoUrl}"
+            android:contentDescription="@string/image_featured_event"/>
+
+        <TextView
+            android:id="@+id/text_time_featured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_light"
+            app:LongToTime="@{event.startDateTime}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_featured_event" />
+
+        <TextView
+            android:id="@+id/text_online_offline"
+            OnlineOrOffline="@{event.format}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/ic_cast"
+            android:drawablePadding="@dimen/value_4_dp"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize10sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_language"
+            app:layout_constraintStart_toEndOf="@+id/text_language" />
+
+        <TextView
+            android:id="@+id/text_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="@dimen/value_4_dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@{event.city.name}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize10sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_time_featured"
+            app:layout_constraintStart_toEndOf="@+id/text_time_featured" />
+
+        <TextView
+            android:id="@+id/text_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/ic_language"
+            android:drawablePadding="@dimen/value_4_dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@{event.language.name}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize10sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_city"
+            app:layout_constraintStart_toEndOf="@+id/text_city" />
+
+        <LinearLayout
+            android:id="@+id/event_header"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/image_featured_event"
+            app:layout_constraintTop_toTopOf="@+id/image_featured_event">
+
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/colorAmber"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:paddingStart="@dimen/value_8_dp"
+                android:paddingEnd="@dimen/value_8_dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSize18sp"
+                app:longToDate="@{event.startDateTime}"
+                tools:text="25\n11" />
+
+                <TextView
+                    android:id="@+id/event_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="start|center_vertical"
+                    android:background="@color/colorAmberOpacity80"
+                    android:text="@{event.title}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/textSize20sp"
+                    android:paddingStart="@dimen/value_4_dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    tools:text="Very long long event title"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/speakers_container"
+            android:layout_width="@dimen/value_30_dp"
+            android:layout_height="@dimen/value_80_dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/value_8_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

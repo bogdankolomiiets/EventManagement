@@ -33,9 +33,9 @@ class AuthorisationViewModel : ViewModel() {
     private val retrofit: Retrofit = RetrofitInstance.retrofit
     private val authorisationService: AuthorisationService
     private val passCodeService: PassCodeService
+    private val passCodeFromRequest = MutableLiveData<String>()
     val codeRequestStatus = MutableLiveData<Int>()
     val passCodeRequestStatus = MutableLiveData<Int>()
-    val passCodeFromRequest = MutableLiveData<String>()
     var tokenFromRequest = MutableLiveData<Token>()
     var userEmail: String = ""
 
@@ -50,10 +50,10 @@ class AuthorisationViewModel : ViewModel() {
 
         tokenFromRequest.observeForever { AppApplication.sharedPreferences
             .edit()
-            .putString(USER_TOKEN, TOKEN_SIGN.plus(it))
+            .putString(USER_TOKEN, TOKEN_SIGN.plus(it.token))
             .apply()
 
-            AppApplication.token = TOKEN_SIGN.plus(it)
+            AppApplication.token = TOKEN_SIGN.plus(it.token)
         }
 
         passCodeRequestStatus.observeForever {
@@ -68,24 +68,22 @@ class AuthorisationViewModel : ViewModel() {
     }
 
     fun sendCodeOnEmail() {
-        if (isOnline(context)) {
-            val jsonObject = JsonObject()
-            jsonObject.addProperty("email", userEmail)
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("email", userEmail)
 
-            authorisationService.sendCodeOnEmail(jsonObject).enqueue(object : Callback<Void> {
-                override fun onFailure(call: Call<Void>?, t: Throwable) {
-                    showErrorToast("Failure: ${t.message}")
-                }
+        authorisationService.sendCodeOnEmail(jsonObject).enqueue(object : Callback<Void> {
+            override fun onFailure(call: Call<Void>?, t: Throwable) {
+                showErrorToast("Failure: ${t.message}")
+            }
 
-                override fun onResponse(call: Call<Void>?, response: Response<Void>) {
-                    if (!response.isSuccessful) {
-                        showErrorToast("Failure: ${response.code()}")
-                        return
-                    }
-                    codeRequestStatus.postValue(CODE_SENT_OK)
+            override fun onResponse(call: Call<Void>?, response: Response<Void>) {
+                if (!response.isSuccessful) {
+                    showErrorToast("Failure: ${response.code()}")
+                    return
                 }
-            })
-        }
+                codeRequestStatus.postValue(CODE_SENT_OK)
+            }
+        })
     }
 
     fun confirmEmail(code: String) {
@@ -105,28 +103,23 @@ class AuthorisationViewModel : ViewModel() {
                         return
                     }
                     tokenFromRequest.postValue(response.body())
+                    //tokenFromRequest.postValue(Token("bogdan.kolomiiets@gmail.com", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2hkYW5fa29sb21paWV0c0BlcGFtLmNvbSIsImlhdCI6MTU3NTAzNzc2MSwiZXhwIjoxODkwNjA3MDIxfQ.zehORinu-jhn40Oqa6N-9ihYcz_9pJ0W6fCjIzraolE"))
                     codeRequestStatus.postValue(EMAIL_VERIFIED)
                 }
             })
         }
     }
 
-    fun getPassCode(passCode: String) {
-        if (isOnline(context)) {
-            //todo
-            passCodeService.getPassCode()
-        }
-    }
-
     fun setPassCode(code: String) {
         if (isOnline(context)) {
             tempPassCode = code
-            passCodeService.setPassCode(Passcode(code)).enqueue(object : Callback<Int>{
-                override fun onFailure(call: Call<Int>?, t: Throwable) {
+            passCodeService.setPassCode(Passcode(code)).enqueue(object : Callback<Void>{
+                override fun onFailure(call: Call<Void>?, t: Throwable) {
                     showErrorToast("Failure: ${t.message}")
+                    passCodeRequestStatus.postValue(INTERNAL_SERVER_ERROR_500)
                 }
 
-                override fun onResponse(call: Call<Int>?, response: Response<Int>) {
+                override fun onResponse(call: Call<Void>?, response: Response<Void>) {
                     if (!response.isSuccessful) {
                         showErrorToast("Failure: ${response.code()}")
                         passCodeRequestStatus.postValue(response.code())
@@ -135,13 +128,6 @@ class AuthorisationViewModel : ViewModel() {
                     passCodeRequestStatus.postValue(PASSCODE_SET_NOT_EMPTY)
                 }
             })
-        }
-    }
-
-    fun removePassCode(code: String) {
-        if (isOnline(context)) {
-            //todo
-            passCodeService.removePassCode(Passcode(code))
         }
     }
 }

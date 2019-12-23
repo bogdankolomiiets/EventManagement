@@ -2,8 +2,43 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/sign_out"
-        android:icon="@drawable/logout"
-        android:title="@string/sign_out"
-        android:onClick="signOut"/>
+        android:id="@+id/profile"
+        android:icon="@drawable/account"
+        android:title="@string/profile"
+        android:onClick="onDrawerMenuItemClick"/>
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/view_dashboard"
+        android:title="@string/dashboard"
+        android:onClick="onDrawerMenuItemClick"/>
+
+    <item
+        android:id="@+id/my_events"
+        android:icon="@drawable/view_list"
+        android:title="@string/my_events"
+        android:onClick="onDrawerMenuItemClick"/>
+
+    <item
+        android:id="@+id/favourite_events"
+        android:icon="@drawable/heart"
+        android:title="@string/favourite_events"
+        android:onClick="onDrawerMenuItemClick"/>
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings"
+        android:title="@string/settings"
+        android:onClick="onDrawerMenuItemClick"/>
+
+    <group android:id="@+id/nav_footer">
+
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@drawable/ic_exit_gray"
+            android:title="@string/sign_out"
+            android:onClick="onDrawerMenuItemClick"/>
+
+    </group>
+
 </menu>
