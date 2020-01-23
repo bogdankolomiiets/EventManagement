@@ -66,6 +66,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
+    //youtube api
+    implementation 'com.google.apis:google-api-services-youtube:v3-rev100-1.15.0-rc'
+
     //Tests
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-inline:2.8.47'

@@ -28,5 +28,7 @@ class Constants {
         const val EVENT: String = "EVENT"
         const val ROUND_ICONS_WIDTH: Int = 90
         const val ROUND_ICONS_HEIGHT: Int = 90
+        const val YOUTUBE_API_KEY = "AIzaSyAUTS6Yi_GPCNeaJ0ODCnAX-K7U3YTkHLc"
+        const val YOUTUBE_REQUEST_PART = "snippet"
     }
 }

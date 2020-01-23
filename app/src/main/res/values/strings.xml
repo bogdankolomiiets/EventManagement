@@ -121,4 +121,10 @@
     <string name="result">Result</string>
     <string name="country">Country</string>
     <string name="speakers_name_and_surname">%s %s</string>
+    <string name="no_files">No files</string>
+    <string name="save">SAVE</string>
+    <string name="youtube_link">YouTube Link</string>
+    <string name="provide_link">Provide Link</string>
+    <string name="youtube_thumbnail">youtube thumbnail</string>
+    <string name="link_added">link added</string>
 </resources>

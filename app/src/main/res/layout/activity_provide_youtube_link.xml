@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.ProvideYoutubeLinkActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/youtube_link_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ToolBarNewEventTitleStyle">
+
+        <TextView
+            android:id="@+id/main_tool_bar_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/youtube_link" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/youtube_link_textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/youtube_link_tool_bar"
+        android:layout_margin="@dimen/value_16_dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/provide_link"
+        android:textColorHint="@color/colorBlizzardBlue">
+
+        <EditText
+            android:id="@+id/youtube_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:backgroundTint="@color/colorTundoraOpacity54"
+            android:inputType="text"
+            android:textColor="@color/colorTundora"
+            android:textSize="@dimen/textSize16sp"
+            tools:targetApi="O" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/youtube_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/youtube_link_textInputLayout"
+        android:layout_above="@id/save_link_button"
+        android:layout_marginStart="@dimen/value_16_dp"
+        android:layout_marginEnd="@dimen/value_16_dp"
+        android:contentDescription="@string/youtube_thumbnail"/>
+
+    <Button
+        android:id="@+id/save_link_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/value_16_dp"
+        android:background="@drawable/next_btn_background"
+        android:text="@string/save"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

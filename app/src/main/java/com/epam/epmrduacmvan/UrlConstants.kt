@@ -16,5 +16,9 @@ class UrlConstants {
         const val SPEAKERS_CONTROLLER: String = "/api/v1/speakers"
         const val USER_PROFILE_CONTROLLER: String = "/api/v1/profile/info"
         const val CALENDAR_CONTROLLER: String = "/api/v1/events/calendar"
+        const val LINK_CONTROLLER: String = "/api/v1/link"
+        const val ARTIFACT_CONTROLLER: String = "/api/v1/artifact"
+        const val YOUTUBE_VIDEO_INFO_CONTROLLER: String = "https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyAUTS6Yi_GPCNeaJ0ODCnAX-K7U3YTkHLc&id=buoYlm_4CPk"
+//        const val YOUTUBE_VIDEO_INFO_CONTROLLER: String = "https://www.googleapis.com/youtube/v3/videos"
     }
 }
