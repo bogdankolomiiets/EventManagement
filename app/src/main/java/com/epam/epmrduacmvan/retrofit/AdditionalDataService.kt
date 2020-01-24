@@ -57,7 +57,7 @@ interface AdditionalDataService {
     fun getAllEventLinks(@Path("eventId") eventId: String): Call<List<Artifact>>
 
     @POST(LINK_CONTROLLER.plus("/{eventId}"))
-    fun addLinkToEvent(@Path("eventId") eventId: String, @Body artifactDto: JsonObject): Call<Void>
+    fun addLinkToEvent(@Path("eventId") eventId: String, @Body artifactDto: Artifact): Call<Void>
 
     @DELETE(LINK_CONTROLLER.plus("/linkId"))
     fun deleteLink(@Path("linkId") linkId: String)

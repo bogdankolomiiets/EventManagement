@@ -1,41 +1,37 @@
 package com.epam.epmrduacmvan.viewmodels
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.epam.epmrduacmvan.AppApplication
 import com.epam.epmrduacmvan.Constants.Companion.YOUTUBE_API_KEY
 import com.epam.epmrduacmvan.Constants.Companion.YOUTUBE_REQUEST_PART
-import com.epam.epmrduacmvan.R
-import com.epam.epmrduacmvan.UrlConstants
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.INTERNAL_SERVER_ERROR_500
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_ADDED_OK
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_SERVER_CONTAINS
 import com.epam.epmrduacmvan.UrlConstants.Companion.YOUTUBE_VIDEO_INFO_CONTROLLER
 import com.epam.epmrduacmvan.model.*
 import com.epam.epmrduacmvan.retrofit.AdditionalDataService
 import com.epam.epmrduacmvan.retrofit.RetrofitInstance
 import com.epam.epmrduacmvan.utils.showErrorToast
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import okhttp3.*
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.util.*
-import kotlin.collections.List
-import kotlin.collections.MutableMap
-import kotlin.collections.filter
-import kotlin.collections.mutableMapOf
-import kotlin.collections.set
 
 class AdditionalDataViewModel: ViewModel() {
-    private val okHttpClient = OkHttpClient.Builder().build()
+    private val youtubeOkHttpClient = OkHttpClient.Builder().build()
     private val retrofit = RetrofitInstance.retrofit
     private val additionalDataService: AdditionalDataService
     private val defaultLocale = Locale.getDefault()
-    private var youTubeQueryMap: MutableMap<String, String> = mutableMapOf()
     val cityName: MutableLiveData<String> = MutableLiveData()
     val categoryName: MutableLiveData<String> = MutableLiveData()
     val countries = MutableLiveData<List<Country>>()
@@ -64,6 +60,11 @@ class AdditionalDataViewModel: ViewModel() {
     private val youtubeVideos = MutableLiveData<YoutubeVideos>()
     fun getYoutubeVideos(): LiveData<YoutubeVideos> {
         return youtubeVideos
+    }
+
+    private val youtubeLinkAddingResult = MutableLiveData<Int>()
+    fun getYoutubeLinkAddingResult(): LiveData<Int> {
+        return youtubeLinkAddingResult
     }
 
     init {
@@ -179,59 +180,49 @@ class AdditionalDataViewModel: ViewModel() {
     }
 
     fun addLinkToEvent(eventId: String, artifactDto: Artifact) {
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("artifactUrl", artifactDto.artifactUrl)
-        jsonObject.addProperty("fileName", artifactDto.fileName)
-        jsonObject.addProperty("fileSize", artifactDto.fileSize)
-        jsonObject.addProperty("id", artifactDto.id)
-        jsonObject.addProperty("link", artifactDto.link)
-
-        additionalDataService.addLinkToEvent(eventId, jsonObject).enqueue(object : Callback<Void> {
+        additionalDataService.addLinkToEvent(eventId, artifactDto).enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>?, t: Throwable) {
                 showErrorToast("Failure: ${t.message}")
             }
 
             override fun onResponse(call: Call<Void>?, response: Response<Void>) {
                 if (!response.isSuccessful) {
-                    showErrorToast("Failure: ${response.code()}")
+                    if (response.code() == INTERNAL_SERVER_ERROR_500) {
+                        youtubeLinkAddingResult.postValue(YOUTUBE_LINK_SERVER_CONTAINS)
+                    } else {
+                        showErrorToast("Failure: ${response.code()}")
+                    }
                     return
-                } else {
-                    showErrorToast(AppApplication.appContext.getString(R.string.link_added))
                 }
+                youtubeLinkAddingResult.postValue(YOUTUBE_LINK_ADDED_OK)
             }
         })
     }
 
     fun getVideoInfo(videoId: String) {
-        youTubeQueryMap["id"] = videoId
-
-        val requestBody = MultipartBody.Builder()
-            .addFormDataPart("id", videoId)
-            .addFormDataPart("key", YOUTUBE_API_KEY)
-            .addFormDataPart("part", YOUTUBE_REQUEST_PART)
+        val requestBody = FormBody.Builder()
+            .add("id", videoId)
+            .add("key", YOUTUBE_API_KEY)
+            .add("part", YOUTUBE_REQUEST_PART)
             .build()
 
         val request = Request.Builder()
-            .get()
+            .method("get", requestBody)
             .url(YOUTUBE_VIDEO_INFO_CONTROLLER)
             .build()
 
-        okHttpClient.newCall(request).enqueue(object : okhttp3.Callback {
+        youtubeOkHttpClient.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
-                println("***************************** " + e.message)
-
-                //showErrorToast("Failure: ${e.message}")
+                Handler(Looper.getMainLooper()).post { showErrorToast("Failure: ${e.message}") }
+                call.cancel()
             }
 
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 if (!response.isSuccessful) {
-                    println("***************************** " + response.code)
-
-//                    showErrorToast("Failure: ${response.code}")
+                    Handler(Looper.getMainLooper()).post { showErrorToast("Failure: ${response.code}") }
                     return
-                } else {
-                    youtubeVideos.postValue(Gson().fromJson<YoutubeVideos>(response.body?.string().toString(), object : TypeToken<YoutubeVideos>() {}.type))
                 }
+                youtubeVideos.postValue(Gson().fromJson<YoutubeVideos>(response.body?.string().toString(), object : TypeToken<YoutubeVideos>() {}.type))
             }
         })
     }

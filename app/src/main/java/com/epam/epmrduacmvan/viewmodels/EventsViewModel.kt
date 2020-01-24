@@ -1,5 +1,6 @@
 package com.epam.epmrduacmvan.viewmodels
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -132,6 +133,21 @@ class EventsViewModel : ViewModel() {
                 }
                 showErrorToast(AppApplication.appContext.getString(R.string.success))
                 draftEvent.postValue(response.body())
+            }
+        })
+    }
+
+    fun changeEventStatus(event: Event) {
+        eventDataService.changeEventStatus(event.id.toString(), event).enqueue(object : Callback<Void>{
+            override fun onFailure(call: Call<Void>?, t: Throwable) {
+                showErrorToast("Failure: ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>?, response: Response<Void>) {
+                if (!response.isSuccessful) {
+                    showErrorToast("Failure: ${response.code()}")
+                    return
+                }
             }
         })
     }

@@ -17,6 +17,7 @@ import com.epam.epmrduacmvan.IntentRequestCodes.Companion.REQUEST_PICK_IMAGE
 import com.epam.epmrduacmvan.PermissionsRequestCodes.Companion.REQUEST_READ_EXTERNAL_STORAGE_FOR_PICK_IMAGE
 import com.epam.epmrduacmvan.PermissionsRequestCodes.Companion.REQUEST_READ_EXTERNAL_STORAGE_FOR_YOUTUBE_LINK
 import com.epam.epmrduacmvan.R
+import com.epam.epmrduacmvan.model.Event
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FullEventInfoFilesFragment : Fragment(), View.OnClickListener {
@@ -40,6 +41,8 @@ class FullEventInfoFilesFragment : Fragment(), View.OnClickListener {
         addImageFab.setOnClickListener(this)
         addYoutubeLinkFab.setOnClickListener(this)
 
+        addResourcesFab.isVisible = (activity as FullEventInfoActivity).eventForDisplay.attendeeType == Event.ORGANIZER
+
         return rootView
     }
 
@@ -53,7 +56,7 @@ class FullEventInfoFilesFragment : Fragment(), View.OnClickListener {
 
     private fun startActivityEnterYoutubeLink() {
         val intent = Intent(this.context, ProvideYoutubeLinkActivity::class.java)
-        intent.putExtra(EVENT, (activity as FullEventInfoActivity).eventId)
+        intent.putExtra(EVENT, (activity as FullEventInfoActivity).eventForDisplay.id)
         startActivity(intent)
     }
 

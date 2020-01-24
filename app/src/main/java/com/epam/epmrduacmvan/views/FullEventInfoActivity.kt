@@ -22,9 +22,8 @@ class FullEventInfoActivity: AppCompatActivity() {
     private lateinit var fullEventInfoTabLayout: TabLayout
     private lateinit var eventsViewModel: EventsViewModel
     private lateinit var registerEventButton: Button
-    private lateinit var eventForDisplay: Event
     private val DEFAULT_EVENT_ID = -1
-    var eventId = DEFAULT_EVENT_ID
+    lateinit var eventForDisplay: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,7 @@ class FullEventInfoActivity: AppCompatActivity() {
 
         eventsViewModel = MainActivity.obtainViewModel(this)
 
-        eventId = intent.getIntExtra(EVENT, DEFAULT_EVENT_ID)
+        val eventId = intent.getIntExtra(EVENT, DEFAULT_EVENT_ID)
         if (eventId > DEFAULT_EVENT_ID) {
             eventsViewModel.getFullEventInfo(eventId)
         }

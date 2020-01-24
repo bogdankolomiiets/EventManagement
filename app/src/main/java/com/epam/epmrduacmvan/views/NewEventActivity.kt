@@ -60,8 +60,7 @@ class NewEventActivity : AppCompatActivity() {
                     saveEventButton.setText(R.string.publish)
                     saveEventButton.setBackgroundResource(R.drawable.publish_btn_background)
                     saveEventButton.setOnClickListener { _ ->
-                        it.status = Event.STATUS_PUBLISHED
-                        eventsViewModel.newEvent(it)
+                        eventsViewModel.changeEventStatus(it.apply { it.status = Event.STATUS_PUBLISHED })
                     }
                 }
                 Event.STATUS_PUBLISHED -> {

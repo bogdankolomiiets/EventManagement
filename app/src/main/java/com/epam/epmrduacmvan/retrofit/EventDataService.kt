@@ -33,6 +33,9 @@ interface EventDataService {
     @POST(EVENTS_CONTROLLER)
     fun newEvent(@Body event: Event): Call<Event>
 
+    @PUT(EVENTS_CONTROLLER.plus("/{eventId}"))
+    fun changeEventStatus(@Path( "eventId") eventId: String, @Body event: Event): Call<Void>
+
     /*reserved
     *@DELETE(EVENTS_CONTROLLER.plus("/{eventId}"))
     *fun removeEvent(@Path("eventId") eventId: Int)

@@ -12,5 +12,7 @@ class RequestResponseCodes {
         const val BAD_REQUEST_400 = 400
         const val NOT_FOUND_404 = 404
         const val INTERNAL_SERVER_ERROR_500 = 500
+        const val YOUTUBE_LINK_ADDED_OK = 2006
+        const val YOUTUBE_LINK_SERVER_CONTAINS = 2007
     }
 }

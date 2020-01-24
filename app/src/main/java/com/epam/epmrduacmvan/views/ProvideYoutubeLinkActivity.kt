@@ -6,26 +6,30 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.epam.epmrduacmvan.Constants
 import com.epam.epmrduacmvan.Constants.Companion.EVENT
 import com.epam.epmrduacmvan.R
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_ADDED_OK
+import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_SERVER_CONTAINS
 import com.epam.epmrduacmvan.model.Artifact
+import com.epam.epmrduacmvan.model.YoutubeVideo
+import com.epam.epmrduacmvan.utils.showErrorToast
 import com.epam.epmrduacmvan.viewmodels.AdditionalDataViewModel
-import java.lang.StringBuilder
-import java.util.function.Predicate
+import java.util.regex.Pattern
 
 class ProvideYoutubeLinkActivity: AppCompatActivity() {
     private lateinit var additionalDataViewModel: AdditionalDataViewModel
     private lateinit var youtubeLink: EditText
     private lateinit var youtubeThumbnail: ImageView
     private lateinit var saveLinkButton: Button
-    private val imgYoutubeLink = "http://img.youtube.com/vi/"
-    private val imageResolutionForYoutubeThumbnail = "/sddefault.jpg"
+    private val youtubeVideo: MutableList<YoutubeVideo> = mutableListOf()
+    private val pattern = Pattern.compile(Constants.YOUTUBE_LINK_PATTERN)
+    private val thumbnailQuality = "standard"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +44,32 @@ class ProvideYoutubeLinkActivity: AppCompatActivity() {
         youtubeThumbnail = findViewById(R.id.youtube_thumbnail)
         saveLinkButton = findViewById(R.id.save_link_button)
         saveLinkButton.setOnClickListener {
-            val tempLink = youtubeLink.text.toString()
-            if (tempLink.isNotEmpty() and (eventId > -1)) {
-                additionalDataViewModel.addLinkToEvent(eventId.toString(), Artifact(tempLink, "New file for demo"))
-            }
+            if (youtubeVideo.isNotEmpty()) {
+                additionalDataViewModel.addLinkToEvent(eventId.toString(), Artifact(youtubeLink.text.toString(), youtubeVideo[0].snippet.title))
+            } else showErrorToast(getString(R.string.please_provide_youtube_link))
         }
+
+        additionalDataViewModel.getYoutubeLinkAddingResult().observe(this, Observer {
+            when (it) {
+                YOUTUBE_LINK_ADDED_OK -> {
+                    showErrorToast(getString(R.string.link_added))
+                    finish()
+                }
+                YOUTUBE_LINK_SERVER_CONTAINS -> showErrorToast(getString(R.string.already_exists))
+            }
+        })
 
         val linkBuilder = StringBuilder()
         youtubeLink.doOnTextChanged { text, _, _, _ ->
             try {
-                linkBuilder.clear()
-                linkBuilder.append(text.toString().split("?v=")[1])
-                if (linkBuilder.isNotEmpty()) {
-                    additionalDataViewModel.getVideoInfo(linkBuilder.toString())
+                val matcher = pattern.matcher(text)
+                if (matcher.find()) {
+                    linkBuilder.clear()
+                    linkBuilder.append(matcher.group(1))
+
+                    if (linkBuilder.isNotEmpty()) {
+                        additionalDataViewModel.getVideoInfo(linkBuilder.toString())
+                    }
                 }
             } catch (ex: Exception) {
                 /* stub */
@@ -61,11 +78,15 @@ class ProvideYoutubeLinkActivity: AppCompatActivity() {
 
         additionalDataViewModel.getYoutubeVideos().observe(this, Observer {
             if (it.items.isNotEmpty()) {
-                Glide.with(this)
-                    .load(it.items[0].snippet.thumbnails["default"])
-                    .into(youtubeThumbnail)
+                youtubeVideo.clear()
+                youtubeVideo.addAll(it.items)
 
-                Toast.makeText(ProvideYoutubeLinkActivity@this, it.items[0].snippet.title, Toast.LENGTH_LONG).show()
+                Glide.with(this)
+                    .load(youtubeVideo[0].snippet.thumbnails[thumbnailQuality]?.url)
+                    .into(youtubeThumbnail)
+            } else {
+                youtubeThumbnail.setImageResource(0)
+                youtubeVideo.clear()
             }
         })
     }

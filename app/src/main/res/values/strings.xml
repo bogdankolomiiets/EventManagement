@@ -126,5 +126,7 @@
     <string name="youtube_link">YouTube Link</string>
     <string name="provide_link">Provide Link</string>
     <string name="youtube_thumbnail">youtube thumbnail</string>
-    <string name="link_added">link added</string>
+    <string name="link_added">Link added</string>
+    <string name="already_exists">Already exists</string>
+    <string name="please_provide_youtube_link">Please provide youtube link</string>
 </resources>
