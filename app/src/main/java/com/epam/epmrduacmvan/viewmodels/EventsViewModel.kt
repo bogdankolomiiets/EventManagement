@@ -1,6 +1,5 @@
 package com.epam.epmrduacmvan.viewmodels
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,17 +27,20 @@ class EventsViewModel : ViewModel() {
     var isEventsLoaded = MutableLiveData<Boolean>()
     var isRefreshed = MutableLiveData<Boolean>()
 
-    private var mEventsPage = MutableLiveData<Page>()
+    private val mEventsPage = MutableLiveData<Page>()
     val events: LiveData<Page>
         get() = mEventsPage
 
-    private var mFeaturedEvents = MutableLiveData<List<Event>>()
+    private val mFeaturedEvents = MutableLiveData<List<Event>>()
     val featuredEvents: LiveData<List<Event>>
     get() = mFeaturedEvents
 
-    var draftEvent = MutableLiveData<Event>()
-    var eventById = MutableLiveData<Event>()
-    var updatedEvent = MutableLiveData<Event>()
+    private val mDraftEvent = MutableLiveData<Event>()
+    val draftEvent: LiveData<Event>
+    get() = mDraftEvent
+
+    val eventById = MutableLiveData<Event>()
+    val updatedEvent = MutableLiveData<Event>()
 //    val updatedEvent: LiveData<Event>
 //        get() = mUpdatedEvent
 
@@ -50,12 +52,12 @@ class EventsViewModel : ViewModel() {
         eventDataService = retrofit.create(EventDataService::class.java)
 
         //init base query
-        setDefaultQuerry()
+        setDefaultQuery()
         getFeaturedEvents()
         getEvents()
     }
 
-    fun setDefaultQuerry() {
+    fun setDefaultQuery() {
         queryMap.clear()
         queryMap[PAGE] = 0
         queryMap[SIZE] = 20
@@ -132,22 +134,23 @@ class EventsViewModel : ViewModel() {
                     return
                 }
                 showErrorToast(AppApplication.appContext.getString(R.string.success))
-                draftEvent.postValue(response.body())
+                mDraftEvent.postValue(response.body())
             }
         })
     }
 
     fun changeEventStatus(event: Event) {
-        eventDataService.changeEventStatus(event.id.toString(), event).enqueue(object : Callback<Void>{
-            override fun onFailure(call: Call<Void>?, t: Throwable) {
+        eventDataService.changeEventStatus(event.id).enqueue(object : Callback<Event>{
+            override fun onFailure(call: Call<Event>?, t: Throwable) {
                 showErrorToast("Failure: ${t.message}")
             }
 
-            override fun onResponse(call: Call<Void>?, response: Response<Void>) {
+            override fun onResponse(call: Call<Event>?, response: Response<Event>) {
                 if (!response.isSuccessful) {
                     showErrorToast("Failure: ${response.code()}")
                     return
                 }
+                mDraftEvent.postValue(response.body())
             }
         })
     }

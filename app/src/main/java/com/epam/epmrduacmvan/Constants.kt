@@ -27,6 +27,7 @@ class Constants {
         const val CITY: String = "CITY"
         const val CATEGORY: String = "CATEGORY"
         const val EVENT: String = "EVENT"
+        const val EVENT_ID: String = "EVENT_ID"
         const val ROUND_ICONS_WIDTH: Int = 90
         const val ROUND_ICONS_HEIGHT: Int = 90
         const val YOUTUBE_API_KEY = "AIzaSyAUTS6Yi_GPCNeaJ0ODCnAX-K7U3YTkHLc"

@@ -10,8 +10,10 @@ import com.epam.epmrduacmvan.UrlConstants.Companion.SPEAKERS_CONTROLLER
 import com.epam.epmrduacmvan.UrlConstants.Companion.USER_PROFILE_CONTROLLER
 import com.epam.epmrduacmvan.model.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface AdditionalDataService {
     @Headers( "Content-Type: application/json; charset=UTF-8")
@@ -50,14 +52,15 @@ interface AdditionalDataService {
     @GET(ARTIFACT_CONTROLLER.plus("/eventId"))
     fun getArtifacts(@Path("eventId") eventId: String): Call<List<Artifact>>
 
-    @POST(ARTIFACT_CONTROLLER.plus("/eventId"))
-    fun uploadArtifact(@Path("eventId") eventId: String)
-
     @GET(LINK_CONTROLLER.plus("/eventId"))
     fun getAllEventLinks(@Path("eventId") eventId: String): Call<List<Artifact>>
 
     @POST(LINK_CONTROLLER.plus("/{eventId}"))
     fun addLinkToEvent(@Path("eventId") eventId: String, @Body artifactDto: Artifact): Call<Void>
+
+    @Multipart
+    @POST(ARTIFACT_CONTROLLER.plus("/{eventId}"))
+    fun uploadArtifact(@Path("eventId") eventId: String, @Part file: MultipartBody.Part): Call<Void>
 
     @DELETE(LINK_CONTROLLER.plus("/linkId"))
     fun deleteLink(@Path("linkId") linkId: String)

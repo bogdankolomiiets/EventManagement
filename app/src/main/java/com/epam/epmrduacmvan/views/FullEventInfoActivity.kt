@@ -12,18 +12,19 @@ import com.epam.epmrduacmvan.Constants.Companion.EVENT
 import com.epam.epmrduacmvan.R
 import com.epam.epmrduacmvan.adapters.FullEventInfoPagerAdapter
 import com.epam.epmrduacmvan.databinding.ActivityFullEventInfoBinding
+import com.epam.epmrduacmvan.interfaces.EventShareable
 import com.epam.epmrduacmvan.model.Event
 import com.epam.epmrduacmvan.viewmodels.EventsViewModel
 import com.google.android.material.tabs.TabLayout
 
-class FullEventInfoActivity: AppCompatActivity() {
+class FullEventInfoActivity: AppCompatActivity(), EventShareable {
     private lateinit var binding: ActivityFullEventInfoBinding
     private lateinit var fullEventInfoViewpager: ViewPager
     private lateinit var fullEventInfoTabLayout: TabLayout
     private lateinit var eventsViewModel: EventsViewModel
     private lateinit var registerEventButton: Button
+    private lateinit var eventForDisplay: Event
     private val DEFAULT_EVENT_ID = -1
-    lateinit var eventForDisplay: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,5 +72,9 @@ class FullEventInfoActivity: AppCompatActivity() {
             R.id.close, android.R.id.home -> onBackPressed()
         }
         return true
+    }
+
+    override fun getEvent(): Event {
+        return eventForDisplay
     }
 }

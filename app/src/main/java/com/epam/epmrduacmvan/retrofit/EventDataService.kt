@@ -33,9 +33,6 @@ interface EventDataService {
     @POST(EVENTS_CONTROLLER)
     fun newEvent(@Body event: Event): Call<Event>
 
-    @PUT(EVENTS_CONTROLLER.plus("/{eventId}"))
-    fun changeEventStatus(@Path( "eventId") eventId: String, @Body event: Event): Call<Void>
-
     /*reserved
     *@DELETE(EVENTS_CONTROLLER.plus("/{eventId}"))
     *fun removeEvent(@Path("eventId") eventId: Int)
@@ -47,10 +44,9 @@ interface EventDataService {
     @DELETE(PARTICIPANTS_CONTROLLER.plus("/attendee/{id}"))
     fun doNotWantToAttend(@Path("id") id: Int): Call<Event>
 
-    /*reserved
-    *@PUT(EVENTS_CONTROLLER.plus("/status/{eventId}"))
-    *fun changeEventStatus(@Path("eventId") eventId: Int): Call<Void>
-    */
+    @PUT(EVENTS_CONTROLLER.plus("/status/{eventId}"))
+    fun changeEventStatus(@Path("eventId") eventId: Int): Call<Event>
+
 
     @GET(CALENDAR_CONTROLLER)
     fun getCalendarCount(@QueryMap map: MutableMap<String, Any>): Call<CalendarCount>

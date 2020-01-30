@@ -43,11 +43,21 @@
         tools:visibility="visible">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/value_8_dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_insert_drive_file"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="mini" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_youtube_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/value_8_dp"
-            android:backgroundTint="@android:color/white"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_youtube"
@@ -55,11 +65,10 @@
             app:fabSize="mini" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_snapshot"
+            android:id="@+id/make_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/value_8_dp"
-            android:backgroundTint="@android:color/white"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_photo_camera"
@@ -71,7 +80,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/value_8_dp"
-            android:backgroundTint="@android:color/white"
             android:clickable="true"
             android:focusable="true"
             app:backgroundTint="@android:color/white"

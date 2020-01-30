@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.epam.epmrduacmvan.Constants
-import com.epam.epmrduacmvan.Constants.Companion.EVENT
+import com.epam.epmrduacmvan.Constants.Companion.EVENT_ID
 import com.epam.epmrduacmvan.R
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_ADDED_OK
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_SERVER_CONTAINS
@@ -37,7 +37,7 @@ class ProvideYoutubeLinkActivity: AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.youtube_link_tool_bar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         additionalDataViewModel = ViewModelProviders.of(this)[AdditionalDataViewModel::class.java]
-        val eventId = intent.getIntExtra(EVENT, -1)
+        val eventId = intent.getIntExtra(EVENT_ID, -1)
 
         //init UI components
         youtubeLink = findViewById(R.id.youtube_link)
@@ -45,7 +45,7 @@ class ProvideYoutubeLinkActivity: AppCompatActivity() {
         saveLinkButton = findViewById(R.id.save_link_button)
         saveLinkButton.setOnClickListener {
             if (youtubeVideo.isNotEmpty()) {
-                additionalDataViewModel.addLinkToEvent(eventId.toString(), Artifact(youtubeLink.text.toString(), youtubeVideo[0].snippet.title))
+                additionalDataViewModel.addLinkToEvent(eventId.toString(), Artifact(youtubeLink.text.toString(), youtubeVideo[0].snippet.title, Artifact.TYPE_LINK))
             } else showErrorToast(getString(R.string.please_provide_youtube_link))
         }
 

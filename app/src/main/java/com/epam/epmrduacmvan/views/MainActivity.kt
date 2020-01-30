@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val eventItemOffset = 3
     private var eventsRecyclerCompletelyVisibleItemPosition = -1
     private val intervalDuration = 4000L
+    private val minHorizontalCalendarItemsCount = 4
 
     private var customCalendarItemClickPreviousPosition: Int = 0
     private var isCustomCalendarItemPositionFound: Boolean = false
@@ -206,7 +207,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             editSelectSpeaker.text.clear()
             editSelectLanguage.text.clear()
             checkBox.isChecked = false
-            eventsViewModel.setDefaultQuerry()
+            eventsViewModel.setDefaultQuery()
             eventsViewModel.isRefreshed.postValue(true)
             eventsViewModel.getEvents()
         }
@@ -446,6 +447,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             listOfDays.add(calendar.time)
             calendar.add(DAY_OF_MONTH, 1)
         }
+
+        if (listOfDays.size < minHorizontalCalendarItemsCount) { addDatesToList() }
     }
 
     private fun getMonthName(date: Date): String {

@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.epam.epmrduacmvan.AppApplication
 import com.epam.epmrduacmvan.Constants.Companion.YOUTUBE_API_KEY
 import com.epam.epmrduacmvan.Constants.Companion.YOUTUBE_REQUEST_PART
+import com.epam.epmrduacmvan.R
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.INTERNAL_SERVER_ERROR_500
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_ADDED_OK
 import com.epam.epmrduacmvan.RequestResponseCodes.Companion.YOUTUBE_LINK_SERVER_CONTAINS
@@ -18,14 +20,15 @@ import com.epam.epmrduacmvan.retrofit.RetrofitInstance
 import com.epam.epmrduacmvan.utils.showErrorToast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.io.IOException
 import java.util.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class AdditionalDataViewModel: ViewModel() {
     private val youtubeOkHttpClient = OkHttpClient.Builder().build()
@@ -195,6 +198,25 @@ class AdditionalDataViewModel: ViewModel() {
                     return
                 }
                 youtubeLinkAddingResult.postValue(YOUTUBE_LINK_ADDED_OK)
+            }
+        })
+    }
+
+    fun uploadArtifact(eventId: Int, file: File) {
+        val filePart = file.readBytes().toRequestBody("*/*".toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData("file", file.name, filePart)
+
+        additionalDataService.uploadArtifact(eventId.toString(), multipartBody).enqueue(object : Callback<Void> {
+            override fun onFailure(call: Call<Void>?, t: Throwable) {
+                showErrorToast("Failure: ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>?, response: Response<Void>) {
+                if (!response.isSuccessful) {
+                    showErrorToast("Failure: ${response.code()}")
+                    return
+                }
+                showErrorToast(AppApplication.appContext.getString(R.string.file_uploaded_successful))
             }
         })
     }
