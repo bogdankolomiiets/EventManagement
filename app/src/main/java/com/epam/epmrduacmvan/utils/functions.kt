@@ -137,5 +137,8 @@ fun TextView.showOrHide(format: String) {
     } else {
         View.INVISIBLE
     }
+}
 
+fun generateFileName(): String {
+    return UUID.randomUUID().toString().plus(".jpg")
 }
